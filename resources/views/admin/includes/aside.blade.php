@@ -10,7 +10,7 @@
         <img src="{{ asset('adminlte/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Alexander Pierce</p>
+        <p>{{ auth()->user()->name }} {{ auth()->user()->last_name }}</p>
         <!-- Status -->
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
@@ -32,17 +32,17 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">HEADER</li>
       <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-      <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+      {{-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Usuarios</span></a></li> --}}
+      {{-- <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> --}}
       <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+        <a class="transition" href="#"><i class="ion-person-stalker"></i> <span>Usuarios</span>
           <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="#">Link in level 2</a></li>
-          <li><a href="#">Link in level 2</a></li>
+          <li><a class="transition" href="{{ url('/admin/users') }}"><i class="ion-android-list"></i>Listar Usuarios</a></li>
+          <li><a class="transition" href="{{ url('/admin/users/create') }}"><i class="ion-person-add"></i>Agregar Usuarios</a></li>
         </ul>
       </li>
     </ul>

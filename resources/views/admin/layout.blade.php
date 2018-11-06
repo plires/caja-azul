@@ -26,6 +26,9 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
 
+  <!-- Animated CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte/css/AdminLTE.min.css') }}">
 
@@ -35,6 +38,9 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte/css/admin.app.css') }}">
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="{{ asset('adminlte/css/custom.css') }}">
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -116,6 +122,9 @@ desired effect
 <script src="{{ asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
+
+<!-- Wow efecto para que aparezcan los objetos cuando se va scroleando -->
+<script type="text/javascript" src="{{ asset('adminlte/js/wow.min.js') }}"></script>
 
 <!-- Scripts para esta seccion -->
 @yield('scripts')

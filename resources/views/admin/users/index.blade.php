@@ -35,44 +35,46 @@
 
     <div class="row">            
       <div class="col-md-12 text-right">
-        <a href="{{-- {{ url('/admin/users/create') }} --}}" type="button" class="btn btn-secondary btn-md mb-3">Agregar Usuario&nbsp; <i class="material-icons">person_add</i></a>
+        <a href="{{ url('/admin/users/create') }}" type="button" class="transition btn btn-info btn-lg mb-2"><i class="ion-android-person-add"></i>Agregar Usuario</a>
       </div>
     </div>
 
     <div class="row">
     	<div class="col-md-12">
-        <div class="table-responsive-sm text-center">
+        <div class="table-responsive ">
         
-          <table class="table">
+          <table class="table  table-hover table-condensed">
 
             <thead>
-                <tr>
+                <tr class="active">
                     <th class="col-lg-1 col-md-1">#</th>
                     <th class="col-lg-2 col-md-2">Nombre</th>
+                    <th class="col-lg-2 col-md-2">Apellido</th>
+                    <th class="col-lg-2 col-md-2">Teléfono</th>
                     <th class="col-lg-3 col-md-3">Email</th>
-                    <th class="col-lg-1 col-md-1">Imágen</th>
                     <th class="col-lg-3 col-md-4 text-center">Opciones</th>
                 </tr>
             </thead>
 
             <tbody>
 
-              {{-- @foreach ($users as $user)
+              @foreach ($users as $user)
                 <tr data-id="{{ $user->id }}">
                   <td class="col-lg-1 col-md-1">{{ $user->id }}</td>
                   <td class="col-lg-2 col-md-2">{{ $user->name }}</td>
+                  <td class="col-lg-2 col-md-2">{{ $user->last_name }}</td>
+                  <td class="col-lg-2 col-md-2">{{ $user->phone }}</td>
                   <td class="col-lg-3 col-md-3">{{ $user->email }}</td>
-                  <td class="col-lg-1 col-md-1">{{ $user->image }}</td>
                   <td class="col-lg-3 col-md-4 text-center">
-                    <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" class="btn btn-success" title="Editar Usuario">
-                      <i class="material-icons">edit</i>
+                    <a href="{{-- {{ url('/admin/users/'.$user->id.'/edit') }} --}}" class="btn btn-primary transition" title="Editar Usuario">
+                      <i class="ion-edit"></i>Editar
                     </a>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn_delete_prod btn-confirm" title="Eliminar Usuario">
-                      <i class="material-icons">delete</i>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn_delete_prod btn-confirm transition" title="Eliminar Usuario">
+                      <i class="ion-android-delete"></i>Eliminar
                     </button>
                   </td>
                 </tr>
-              @endforeach --}}
+              @endforeach
 
             </tbody>
 
@@ -83,8 +85,8 @@
     </div>
           
     <div class="row">
-      <div class="col-md-12">
-        {{-- {{ $users->links('pagination.default') }} --}}
+      <div class="col-md-12 text-center">
+        {{ $users->links() }}
       </div>
     </div>
 

@@ -12,7 +12,7 @@ $factory->define(Subscription::class, function (Faker $faker) {
     	'order_date'				=> Carbon::now(),
 			'arrival_date'			=> $date->addMonth(),
 			'status_id'					=> $faker->numberBetween(1, 3),
-			'discount'					=> $faker->numberBetween(1, 20),
+			'total'							=> $faker->numberBetween(2500, 4250),
 			'user_id'						=> $faker->numberBetween(1, 100),
 			'fish_box_id'				=> $faker->numberBetween(1, 3)
     ];

@@ -18,7 +18,7 @@ class CreateSubscriptionsTable extends Migration
 
             $table->date('order_date');
             $table->date('arrival_date');
-            $table->integer('discount');
+            $table->integer('total');
 
             // FK
             $table->integer('status_id')->unsigned();
@@ -32,6 +32,7 @@ class CreateSubscriptionsTable extends Migration
             $table->integer('fish_box_id')->unsigned();
             $table->foreign('fish_box_id')->references('id')->on('fish_boxes');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

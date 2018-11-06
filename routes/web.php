@@ -15,6 +15,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 	// Rutas para Admin.Users
 	Route::get('/users', 'UserController@index'); // listado de usuarios
+	Route::get('/users/create', 'UserController@create'); // Muestra el formulario de registro
+	Route::post('/users', 'UserController@store'); // Registra el nuevo usuario
+	Route::get('/users/{id}/edit', 'UserController@edit'); // Muestra el formulario de edicion del usuario
+	Route::post('/users/{id}/edit', 'UserController@update'); // Actualiza el usuario
+	Route::delete('/users/{id}', 'UserController@delete'); // elimina el usuario
 
 });
 

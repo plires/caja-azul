@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('phone');
             $table->string('email')->unique();
+            $table->string('type')->default('Usuario');
 
             // FK
             $table->integer('address_id')->unsigned()->nullable();
@@ -28,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

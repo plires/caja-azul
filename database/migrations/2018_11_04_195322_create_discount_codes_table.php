@@ -22,6 +22,7 @@ class CreateDiscountCodesTable extends Migration
             $table->date('end_date')->nullable();
             $table->integer('discount');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

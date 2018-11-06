@@ -5,7 +5,7 @@ namespace App;
 use SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class DiscountCode extends Model
+class SubscriptionDetail extends Model
 {
     //
 }

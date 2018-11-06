@@ -21,6 +21,7 @@ class CreateFishBoxesTable extends Migration
             $table->float('price');
             $table->integer('pieces');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
