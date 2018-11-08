@@ -41,41 +41,80 @@
     <div class="row">
       <div class="col-md-12">
 
-        <form method="post" action="{{ url('/admin/users') }} enctype="multipart/form-data">
+        <form method="post" action="{{ url('/admin/users/') }}" enctype="multipart/form-data">
+          {{ csrf_field() }}
 
           <div class="form-group row">
             <div class="col-md-6">
               <label for="name">Nombre</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name') }}">
+              <input required type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name') }}">
             </div>
             <div class="col-md-6">
               <label for="last_name">Apellido</label>
-              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name') }}">
+              <input required type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name') }}">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-6">
               <label for="phone">Teléfono</label>
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone') }}">
+              <input required type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone') }}">
             </div>
             <div class="col-md-6">
               <label for="email">Email</label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email') }}">
+              <input required type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email') }}">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-6">
-              <label for="admin">Tipo de Usuario</label>
-              <select id="admin" name="admin" class="form-control">
+              <label for="type">Tipo de Usuario</label>
+              <select required id="type" name="type" class="form-control">
                 <option value="Usuario" selected>Usuario</option>
                 <option value="Administrador">Administrador</option>
               </select>
             </div>
             <div class="col-md-6">
               <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Pass" value="{{ old('password') }}">
+              <input required type="password" class="form-control" name="password" id="password" placeholder="Pass" value="{{ old('password') }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="street">Calle</label>
+              <input required type="text" class="form-control" name="street" id="street" placeholder="ej: Rivadavia" value="{{ old('street') }}">
+            </div>
+            <div class="col-md-3">
+              <label for="number">Número</label>
+              <input required type="text" class="form-control" name="number" id="number" placeholder="1234" value="{{ old('number') }}">
+            </div>
+            <div class="col-md-3">
+              <label for="floor">Piso</label>
+              <input type="text" class="form-control" name="floor" id="floor" placeholder="ej: 2" value="{{ old('floor') }}">
+            </div>
+            <div class="col-md-3">
+              <label for="departament">Departamento</label>
+              <input type="text" class="form-control" name="departament" id="departament" placeholder="ej: B" value="{{ old('departament') }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="locality">Barrio</label>
+              <input required type="text" class="form-control" name="locality" id="locality" placeholder="ej: Almagro" value="{{ old('locality') }}">
+            </div>
+            <div class="col-md-3">
+              <label for="cp">CP</label>
+              <input type="text" class="form-control" name="cp" id="cp" placeholder="1234" value="{{ old('cp') }}">
+            </div>
+            <div class="col-md-3">
+              <label for="state">Provincia</label>
+              <input required type="text" class="form-control" name="state" id="state" placeholder="ej: Buenos Aires" value="{{ old('state') }}">
+            </div>
+            <div class="col-md-3">
+              <label for="country">Pais</label>
+              <input required type="text" class="form-control" name="country" id="country" placeholder="Argentina" value="{{ old('country') }}">
             </div>
           </div>
 

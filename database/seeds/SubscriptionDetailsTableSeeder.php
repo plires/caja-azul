@@ -11,7 +11,7 @@ class SubscriptionDetailsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-    	factory(SubscriptionDetail::class, 50)->create();
-    }
+		{
+			factory(SubscriptionDetail::class, 50)->create();
+		}
 }

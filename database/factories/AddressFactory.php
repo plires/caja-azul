@@ -6,7 +6,7 @@ use App\Address;
 $factory->define(Address::class, function (Faker $faker) {
     return [
     	'street'				=>	$faker->streetName,
-			'numbrer'				=>	$faker->buildingNumber,
+			'number'				=>	$faker->buildingNumber,
 			'departament'		=>	$faker->city,
 			'floor'					=>	$faker->city,
 			'locality'			=>	$faker->state,
