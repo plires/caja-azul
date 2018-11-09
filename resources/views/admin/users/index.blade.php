@@ -46,14 +46,14 @@
           <table class="table  table-hover table-condensed">
 
             <thead>
-                <tr class="active">
-                    <th class="col-lg-1 col-md-1">#</th>
-                    <th class="col-lg-2 col-md-2">Nombre</th>
-                    <th class="col-lg-2 col-md-2">Apellido</th>
-                    <th class="col-lg-2 col-md-2">Teléfono</th>
-                    <th class="col-lg-3 col-md-3">Email</th>
-                    <th class="col-lg-3 col-md-4 text-center">Opciones</th>
-                </tr>
+              <tr class="active">
+                  <th class="col-lg-1 col-md-1">#</th>
+                  <th class="col-lg-2 col-md-2">Nombre</th>
+                  <th class="col-lg-2 col-md-2">Apellido</th>
+                  <th class="col-lg-2 col-md-2">Teléfono</th>
+                  <th class="col-lg-3 col-md-3">Email</th>
+                  <th class="col-lg-3 col-md-4 text-center">Opciones</th>
+              </tr>
             </thead>
 
             <tbody>
@@ -66,10 +66,10 @@
                   <td class="col-lg-2 col-md-2">{{ $user->phone }}</td>
                   <td class="col-lg-3 col-md-3">{{ $user->email }}</td>
                   <td class="col-lg-3 col-md-4 text-center">
-                    <a href="{{-- {{ url('/admin/users/'.$user->id.'/edit') }} --}}" class="btn btn-primary transition" title="Editar Usuario">
+                    <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" class="btn btn-primary transition" title="Editar Usuario">
                       <i class="ion-edit"></i>Editar
                     </a>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn_delete_prod btn-confirm transition" title="Eliminar Usuario">
+                    <button type="button" rel="tooltip" class="btn btn-danger btn_delete_user btn-confirm transition" title="Eliminar Usuario">
                       <i class="ion-android-delete"></i>Eliminar
                     </button>
                   </td>
@@ -93,7 +93,7 @@
   </div>
 
 
-  <form action="{{-- {{ url('/admin/users/:USER_ID/') }} --}}" method="DELETE" id="form-delete">
+  <form action="{{ url('/admin/users/:USER_ID/') }}" method="DELETE" id="form-delete">
     <input name="_method" type="hidden" value="DELETE">
     {{ csrf_field() }}
   </form>
@@ -116,10 +116,10 @@
     $("#message").hide();
 
     $(".btn-confirm").on("click", function(){
-      $("#mi-modal").modal('show');
+      $("#modal-delete-user").modal('show');
     });
 
-    $('.btn_delete_prod').click(function(){
+    $('.btn_delete_user').click(function(){
 
       var row = $(this).parents('tr');
       var id = row.data('id');
@@ -127,21 +127,22 @@
       var url = form.attr('action').replace(':USER_ID', id) ;
       var data = form.serialize();
 
-
       $("#modal-btn-si").on("click", function(){
         row.fadeOut();
+
         $.post(url, data, function(result){
           $("#message").fadeIn();
           $("#message").html(result);
           setTimeout(function() {
-          $("#message").fadeOut(1500);
-          },2000);
-          $("#mi-modal").modal('hide');
+          $("#message").fadeOut(1500000);
+          },2000000);
+          $("#modal-delete-user").modal('hide');
         });
+
       });
 
       $("#modal-btn-no").on("click", function(){
-        $("#mi-modal").modal('hide');
+        $("#modal-delete-user").modal('hide');
       });
 
     });

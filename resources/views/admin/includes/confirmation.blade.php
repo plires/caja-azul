@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal modal-danger fade" id="modal-danger">
+<div class="modal modal-danger fade" id="modal-delete-user">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

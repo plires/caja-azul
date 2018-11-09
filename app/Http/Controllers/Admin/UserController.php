@@ -102,53 +102,87 @@ class UserController extends Controller
 	  public function edit($id) 
 	  {
 
-	    $product = Product::find($id);
-	    $categories = Category::orderby('name')->get();
+	    $user = User::find($id);
+	    $address = $user->address;
 
-	    return view('admin.products.edit')->with(compact('product', 'categories')); // ver formulario de registro
+	    return view('admin.users.edit')->with(compact('user', 'address')); // ver formulario de Edicion
 	  }
 
 	  public function update(request $request, $id) 
 	  {
+	  	$user = User::find($id);
+	    $address = $user->address;
 
 	    $messages = [
-	      'name.required' => 'Debe ingresar un nombre para el producto.',
+	      'name.required' => 'Ingresá tu nombre.',
 	      'name.max' => 'El campo nombre no puede exceder los 100 caracteres.',
-	      'description.required' => 'Debe ingresar una descripcion para el producto.',
-	      'description.max' => 'El campo descripción no puede exceder los 200 caracteres.',
-	      'price.required' => 'Debe ingresar un precio para el producto.',
-	      'price.numeric' => 'Ingrese un valor numerico para el campo precio (300.23).',
-	      'price.min' => 'No se admiten valores negativos para el campo precio.'
+	      'last_name.required' => 'Ingresá tu apellido.',
+	      'last_name.max' => 'El campo nombre no puede exceder los 100 caracteres.',
+	      'phone.required' => 'Ingresá un teléfono.',
+	      'phone.numeric' => 'Ingrese un valor numerico para el campo teléfono (11 5 054 8421).',
+	      'phone.min' => 'No se admiten valores negativos para el campo teléfono (-11...).',
+	      'email.required' => 'Ingresá un email.',
+	      'email.email' => 'Ingrese un email válido.',
+	      'email.max' => 'El campo email no puede exceder los 100 caracteres.',
+	      'password.max' => 'El campo password no puede exceder los 16 caracteres.',
+	      'password.min' => 'El campo password debe tener al menos 6 caracteres.',
+	      'street.required' => 'Ingresá una calle.',
+	      'street.max' => 'El campo calle no puede exceder los 100 caracteres.',
+	      'number.required' => 'Ingresá el número de calle.',
+	      'number.max' => 'El campo número no puede exceder los 10 caracteres.',
+	      'locality.required' => 'Ingresá una localidad.',
+	      'locality.max' => 'El campo localidad no puede exceder los 100 caracteres.',
+	      'state.required' => 'Ingresá una provincia.',
+	      'state.max' => 'El campo provincia no puede exceder los 100 caracteres.',
+	      'country.required' => 'Ingresá el país.',
+	      'country.max' => 'El campo país no puede exceder los 100 caracteres.',
 	    ];
 
 	    $rules =[
 	      'name' => 'required|max:100',
-	      'description' => 'required|max:200',
-	      'price' => 'required|numeric|min:0'
+	      'last_name' => 'required|max:100',
+	      'phone' => 'required|numeric|min:0',
+	      'email' => 'required|email|max:100',
+	      'password' => 'max:16|min:6',
+	      'street' => 'required|max:100',
+	      'number' => 'required|max:10',
+	      'locality' => 'required|max:100',
+	      'state' => 'required|max:100',
+	      'country' => 'required|max:100'
 	    ];
 
 	    $this->validate($request, $rules, $messages);
 
-	    $product = Product::find($id);
+	    $address->street = $request->input('street');
+	    $address->number = $request->input('number');
+	    $address->departament = $request->input('departament');
+	    $address->floor = $request->input('floor');
+	    $address->locality = $request->input('locality');
+	    $address->cp = $request->input('cp');
+	    $address->state = $request->input('state');
+	    $address->country = $request->input('country');
 
-	    $product->name = $request->input('name');
-	    $product->description = $request->input('description');
-	    $product->long_description = $request->input('long_description');
-	    $product->price = $request->input('price');
-	    $product->category_id = $request->input('category');
+	    $address->save(); // Ejecuta un update y edita la direccion del usuario.
 
-	    $product->save(); // Ejecuta un update y actualiza el producto.
+	    $user->name = $request->input('name');
+	    $user->last_name = $request->input('last_name');
+	    $user->phone = $request->input('phone');
+	    $user->email = $request->input('email');
+	    $user->type = $request->input('type');
+	    $user->password = bcrypt($request->input('password'));
 
-	    return redirect('/admin/products');
+	    $user->save(); // Ejecuta un update y edita el usuario.
+
+	    return redirect('/admin/users');
 	  }
 
 	  public function delete($id, Request $request)
 	  {
-	    $product = Product::find($id);
+	    $user = User::find($id);
 
-	    $message = 'El Producto <strong>' .$product->name. '</strong> fue borrado.';
+	    $message = 'El Usuario <strong>' .$user->name. '</strong> fue borrado.';
 
-	    Product::find($id)->delete();
+	    User::find($id)->delete();
 
 	    if ($request->ajax() ) {
 	        return $message;

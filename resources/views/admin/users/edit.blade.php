@@ -1,6 +1,6 @@
-@extends('admin.layout.app')
+@extends('admin.layout')
 
-@section('title', 'Editar producto')
+@section('title', 'Editar usuario')
 
 <!-- Header Admin -->
 @section('header')
@@ -17,12 +17,15 @@
 <!-- Content Admin -->
 @section('content')
   <div class="container">
+    
     <div class="row">
     	<div class="col-md-12 text-center">
-        <h1>Editar Producto {{ $product->name }}</h1>
+        <h1>Editar Usuario {{ $user->name }}</h1>
       </div>
-      <div class="col-md-12">
+    </div>
 
+    <div class="row">
+      <div class="col-md-12">
         @if ($errors->any())
           <div class="alert alert-danger small" role="alert">
             @foreach ($errors->all() as $error)
@@ -32,86 +35,107 @@
             @endforeach
           </div>
         @endif
-        
-        <form method="post" action="{{ url('/admin/products/'.$product->id.'/edit') }}">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <form method="post" action="{{ url('/admin/users/'.$user->id.'/edit') }}" enctype="multipart/form-data">
           {{ csrf_field() }}
 
-          <div class="form-row">
-
-            <div class="form-group col-md-4">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="material-icons">menu</i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" value="{{ old('name', $product->name) }}">
-              </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="name">Nombre</label>
+              <input required type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name', $user->name) }}">
             </div>
-
-            <div class="form-group col-md-4">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="material-icons">category</i>
-                  </span>
-                </div>
-                <select id="category" name="category" class="form-control">
-                  @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" 
-                      @if ($category->id == old('category', $product->category_id))
-                        selected
-                      @endif>
-                      {{ $category->name }}
-                    </option>
-                  @endforeach
-                </select>
-              </div>
+            <div class="col-md-6">
+              <label for="last_name">Apellido</label>
+              <input required type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name', $user->last_name) }}">
             </div>
-
-            <div class="form-group col-md-4">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="material-icons">attach_money</i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="price" name="price" placeholder="Precio" value="{{ old('price', $product->price) }}">
-              </div>
-            </div>
-
-            <div class="form-group col-md-12">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="material-icons">description</i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Descripción" value="{{ old('description', $product->description) }}">
-              </div>
-            </div>
-
-            <div class="form-group col-md-12">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="material-icons">view_headline</i>
-                  </span>
-                </div>
-                <textarea class="form-control" id="long_description" name="long_description" placeholder="Descripción Larga" rows="3">{{ old('long_description', $product->long_description) }}</textarea>
-              </div>
-            </div>
-            
           </div>
 
-          <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary"><i class="material-icons">save</i>&nbsp;&nbsp;Guardar Cambios</button>
-            <a href="{{ url('admin/products') }}" class="btn btn-secondary"><i class="material-icons">cancel_presentation</i>&nbsp;&nbsp;Cancelar</a>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="phone">Teléfono</label>
+              <input required type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone', $user->phone) }}">
+            </div>
+            <div class="col-md-6">
+              <label for="email">Email</label>
+              <input required type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email', $user->email) }}">
+            </div>
           </div>
-          
+
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="type">Tipo de Usuario</label>
+              <select id="type" name="type" class="form-control">
+                <option value="Administrador" 
+                  @if ($user->type == old('type', 'Administrador'))
+                    selected
+                  @endif>
+                  Administrador
+                </option>
+                <option value="Usuario" 
+                  @if ($user->type == old('type', 'Usuario'))
+                    selected
+                  @endif>
+                  Usuario
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Pass">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="street">Calle</label>
+              <input required type="text" class="form-control" name="street" id="street" placeholder="ej: Rivadavia" value="{{ old('street', $user->address->street) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="number">Número</label>
+              <input required type="text" class="form-control" name="number" id="number" placeholder="1234" value="{{ old('number', $user->address->number) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="floor">Piso</label>
+              <input type="text" class="form-control" name="floor" id="floor" placeholder="ej: 2" value="{{ old('floor', $user->address->floor) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="departament">Departamento</label>
+              <input type="text" class="form-control" name="departament" id="departament" placeholder="ej: B" value="{{ old('departament', $user->address->departament) }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="locality">Barrio</label>
+              <input required type="text" class="form-control" name="locality" id="locality" placeholder="ej: Almagro" value="{{ old('locality', $user->address->locality) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="cp">CP</label>
+              <input type="text" class="form-control" name="cp" id="cp" placeholder="1234" value="{{ old('cp', $user->address->cp) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="state">Provincia</label>
+              <input required type="text" class="form-control" name="state" id="state" placeholder="ej: Buenos Aires" value="{{ old('state', $user->address->state) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="country">Pais</label>
+              <input required type="text" class="form-control" name="country" id="country" placeholder="Argentina" value="{{ old('country', $user->address->country) }}">
+            </div>
+          </div>
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+
         </form>
       </div>
     </div>
+
   </div>
 @endsection
 <!-- Content Admin end -->
