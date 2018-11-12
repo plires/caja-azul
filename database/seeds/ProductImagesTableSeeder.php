@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Images;
 
-class ImagesTableSeeder extends Seeder
+use App\ProductImage;
+
+class ProductImagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +13,6 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(Images::class, 20)->create();
+        factory(ProductImage::class, 100)->create();
     }
 }

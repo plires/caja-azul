@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('/users', 'UserController@store'); // Registra el nuevo usuario
 	Route::get('/users/{id}/edit', 'UserController@edit'); // Muestra el formulario de edicion del usuario
 	Route::post('/users/{id}/edit', 'UserController@update'); // Actualiza el usuario
+	Route::get('/users/{id}/show', 'UserController@show'); // Muestra el usuario
 	Route::delete('/users/{id}', 'UserController@delete'); // elimina el usuario
 
 });

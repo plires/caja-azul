@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 use SoftDeletes;
+use App\User;
 
 class Address extends Model
 {
 
   //Address->user
-    public function user(){
-        return $this->hasOne(User::class);
-    }
+  public function user(){
+      return $this->belongsTo(User::class);
+  }
 }

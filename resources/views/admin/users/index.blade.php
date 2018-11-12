@@ -29,59 +29,101 @@
     </div>
 
     <div class="row">
-      <div id="message" class="fixed-top col-md-12 alert alert-success small" role="alert">
-      </div>
+      @if (session('message'))
+        <div class="fixed-top col-md-12 alert alert-success small" role="alert">
+          {{ session('message') }}
+        </div>
+      @endif
     </div>
 
-    <div class="row">            
+
+    <div class="row mb-3">            
       <div class="col-md-12 text-right">
         <a href="{{ url('/admin/users/create') }}" type="button" class="transition btn btn-info btn-lg mb-2"><i class="ion-android-person-add"></i>Agregar Usuario</a>
       </div>
     </div>
 
-    <div class="row">
-    	<div class="col-md-12">
-        <div class="table-responsive ">
-        
-          <table class="table  table-hover table-condensed">
+    <div class="box box-primary p-3">
+      <div class="table-responsive">
+      
+        <table class="table table-hover table-condensed">
 
-            <thead>
-              <tr class="active">
-                  <th class="col-lg-1 col-md-1">#</th>
-                  <th class="col-lg-2 col-md-2">Nombre</th>
-                  <th class="col-lg-2 col-md-2">Apellido</th>
-                  <th class="col-lg-2 col-md-2">Teléfono</th>
-                  <th class="col-lg-3 col-md-3">Email</th>
-                  <th class="col-lg-3 col-md-4 text-center">Opciones</th>
-              </tr>
-            </thead>
+          <thead>
+            <tr class="active">
+                <th class="col-lg-1 col-md-1">#</th>
+                <th class="col-lg-2 col-md-2">Nombre</th>
+                <th class="col-lg-2 col-md-2">Apellido</th>
+                <th class="col-lg-2 col-md-2">Teléfono</th>
+                <th class="col-lg-3 col-md-3">Email</th>
+                <th class="col-lg-3 col-md-4 text-center">Opciones</th>
+            </tr>
+          </thead>
 
-            <tbody>
+          <tbody>
 
-              @foreach ($users as $user)
-                <tr data-id="{{ $user->id }}">
-                  <td class="col-lg-1 col-md-1">{{ $user->id }}</td>
-                  <td class="col-lg-2 col-md-2">{{ $user->name }}</td>
-                  <td class="col-lg-2 col-md-2">{{ $user->last_name }}</td>
-                  <td class="col-lg-2 col-md-2">{{ $user->phone }}</td>
-                  <td class="col-lg-3 col-md-3">{{ $user->email }}</td>
-                  <td class="col-lg-3 col-md-4 text-center">
-                    <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" class="btn btn-primary transition" title="Editar Usuario">
-                      <i class="ion-edit"></i>Editar
-                    </a>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn_delete_user btn-confirm transition" title="Eliminar Usuario">
-                      <i class="ion-android-delete"></i>Eliminar
+            @foreach ($users as $user)
+              <tr data-id="{{ $user->id }}">
+                <td class="col-lg-1 col-md-1">
+                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->id }}</a>
+                </td>
+                <td class="col-lg-2 col-md-2">
+                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->name }}</a>
+                </td>
+                <td class="col-lg-2 col-md-2">
+                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->last_name }}</a>
+                </td>
+                <td class="col-lg-2 col-md-2">
+                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->phone }}</a>
+                </td>
+                <td class="col-lg-3 col-md-3">
+                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->email }}</a>
+                </td>
+                <td class="col-lg-3 col-md-4 text-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info">Acciones</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                      <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                  </td>
-                </tr>
-              @endforeach
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a href="{{ url('/admin/users/'.$user->id.'/show') }}" title="Ver Usuario">
+                          <i class="mr-2 ion-edit"></i>Ver Usuario
+                        </a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" title="Editar Usuario">
+                          <i class="mr-2 ion-edit"></i>Editar Usuario
+                        </a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="#" rel="tooltip" class="btn_delete_user btn-confirm transition" title="Eliminar Usuario">
+                          <i class="mr-2 ion-android-delete"></i>Eliminar Usuario
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            @endforeach
 
-            </tbody>
+          </tbody>
 
-          </table>
-        </div>
+          <tfoot>
+            <tr>
+              <th class="col-lg-1 col-md-1">#</th>
+              <th class="col-lg-2 col-md-2">Nombre</th>
+              <th class="col-lg-2 col-md-2">Apellido</th>
+              <th class="col-lg-2 col-md-2">Teléfono</th>
+              <th class="col-lg-3 col-md-3">Email</th>
+              <th class="col-lg-3 col-md-4 text-center">Opciones</th>
+            </tr>
+          </tfoot>
+
+        </table>
       </div>
-
     </div>
           
     <div class="row">

@@ -22,10 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('type')->default('Usuario');
 
-            // FK
-            $table->integer('address_id')->unsigned()->nullable();
-            $table->foreign('address_id')->references('id')->on('addresses');
-
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

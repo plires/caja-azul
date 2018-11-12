@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row box box-primary p-3">
       <div class="col-md-12">
 
         <form method="post" action="{{ url('/admin/users/') }}" enctype="multipart/form-data">
@@ -80,7 +80,7 @@
             </div>
           </div>
 
-          <div class="form-group row">
+          {{-- <div class="form-group row">
             <div class="col-md-3">
               <label for="street">Calle</label>
               <input required type="text" class="form-control" name="street" id="street" placeholder="ej: Rivadavia" value="{{ old('street') }}">
@@ -116,7 +116,7 @@
               <label for="country">Pais</label>
               <input required type="text" class="form-control" name="country" id="country" placeholder="Argentina" value="{{ old('country') }}">
             </div>
-          </div>
+          </div> --}}
 
           <div class="text-right">
             <button type="submit" class="btn btn-primary">Registrar Usuario</button>

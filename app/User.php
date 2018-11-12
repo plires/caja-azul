@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Address;
+use App\Subscription;
 
 class User extends Authenticatable
 {
@@ -32,7 +33,12 @@ class User extends Authenticatable
 
     //User->address
     public function address(){
-        return $this->belongsTo(Address::class);
+        return $this->hasMany(Address::class);
+    }
+
+    //User->subscriptions
+    public function subscriptions(){
+        return $this->hasMany(Subscription::class);
     }
 
 }
