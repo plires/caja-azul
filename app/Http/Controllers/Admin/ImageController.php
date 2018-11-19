@@ -19,14 +19,17 @@ class ImageController extends Controller
       ];
 
       $rules =[
-        'photo' => 'required|max:20|mimes:jpeg,jpg,png,gif'
+        'photo' => 'required|max:2000|mimes:jpeg,jpg,png,gif'
       ];
 
       $this->validate($request, $rules, $messages);
 
       // Guardamos el archivo en el servidor
       $file = $request->file('photo');
-      $path = public_path() . '/images/products';
+
+      $path = storage_path('public/images/products');
+
+      // $path = storage_path() . '/images/products';
       $fileName = uniqid() . $file->getClientOriginalName();
       $moved = $file->move($path, $fileName);
 
@@ -46,8 +49,10 @@ class ImageController extends Controller
 
     public function delete(Request $request, $id)
     {
-
+      
       $productImage = ProductImage::find($id);
+
+      if ($request->ajax()) {
 
       if (substr($productImage->image, 0, 4) === 'http') {
         $deleted = true;
@@ -56,18 +61,15 @@ class ImageController extends Controller
         $deleted = file::delete($fullPath);
       }
 
-      if ($request->ajax()) {
-        // Si se elimino la imagen en el servidor
-        if ($deleted){
-          // Borramos el registro en la bdd
-          $productImage->delete();
-        }
-
-        $message = 'La imagen fue borrada.';
-        return $message;
+      // Si se elimino la imagen en el servidor
+      if ($deleted){
+        // Borramos el registro en la bdd
+        $productImage->delete();
       }
 
-      return back();
+      $message = 'La imagen fue borrada.';
+      return $message;
+      }
 
     }
 

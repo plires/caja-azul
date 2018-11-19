@@ -95,7 +95,7 @@
 
       @foreach ($images as $image)
 
-        <div class="col-sm-6 col-md-4 text-center mb-2">
+        <div class="col-sm-6 col-md-4 contenedor text-center mb-2">
           <div class="thumbnail">
             <img class="mb-2 mt-2" src="{{ $image->url }}" alt="alt">
             <div data-id="{{ $image->id }}" class="caption">
@@ -150,12 +150,13 @@
 
     $('.btn_delete_user').click(function(){
 
+      var contenedor = $('.contenedor')
       var div = $(this).parents('div');
       var id = div.data('id');
       var form = $('#form-delete');
       var url = form.attr('action').replace(':IMAGE_ID', id) ;
       var data = form.serialize();
-      // div.fadeOut();
+      contenedor.fadeOut();
 
       $("#modal-btn-si").on("click", function(){
         
@@ -163,14 +164,14 @@
           $("#message").fadeIn();
           $("#message").html(result);
           setTimeout(function() {
-          $("#message").fadeOut(800000);
-          },1300000);
+          $("#message").fadeOut(80000);
+          },130000);
           $("#modal-danger").modal('hide');
         });
       });
 
       $("#modal-btn-no").on("click", function(){
-        // div.fadeIn();
+        contenedor.fadeIn();
         $("#modal-danger").modal('hide');
       });
 

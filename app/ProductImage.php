@@ -25,7 +25,7 @@ class ProductImage extends Model
   		return $this->image;
   	}
 
-  	return '/images/products/' . $this->image;
+  	return storage_path('/images/products/') . $this->image;
   }
 
 }
