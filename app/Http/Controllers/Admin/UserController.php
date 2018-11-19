@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Address;
 use App\User;
 use App\Subscription;
@@ -72,8 +73,8 @@ class UserController extends Controller
 
 	    $user->save(); // Ejecuta un insert y agrega el usuario.
 
-	    $message = 'Usuario creado exitosamente';
-	    return redirect('/admin/users')->with(compact('message'));
+	    $message = 'Usuario registrado exitosamente';
+	    return back()->with(compact('message'));
 	      
 	  }
 
@@ -99,17 +100,14 @@ class UserController extends Controller
 	      'phone.min' => 'No se admiten valores negativos para el campo teléfono (-11...).',
 	      'email.required' => 'Ingresá un email.',
 	      'email.email' => 'Ingrese un email válido.',
-	      'email.max' => 'El campo email no puede exceder los 100 caracteres.',
-	      'password.max' => 'El campo password no puede exceder los 16 caracteres.',
-	      'password.min' => 'El campo password debe tener al menos 6 caracteres.'
+	      'email.max' => 'El campo email no puede exceder los 100 caracteres.'
 	    ];
 
 	    $rules =[
 	      'name' => 'required|max:100',
 	      'last_name' => 'required|max:100',
 	      'phone' => 'required|numeric|min:0',
-	      'email' => 'required|email|max:100',
-	      'password' => 'max:16|min:6'
+	      'email' => 'required|email|max:100'
 	    ];
 
 	    $this->validate($request, $rules, $messages);
@@ -119,23 +117,36 @@ class UserController extends Controller
 	    $user->phone = $request->input('phone');
 	    $user->email = $request->input('email');
 	    $user->type = $request->input('type');
-	    $user->password = bcrypt($request->input('password'));
 
 	    $user->save(); // Ejecuta un update y edita el usuario.
 
-	    return redirect('/admin/users');
+	    $message = 'Usuario editado exitosamente';
+
+	    return back()->with(compact('message'));
+
 	  }
 
 	  public function delete($id, Request $request)
 	  {
 	    $user = User::find($id);
+	    $userAuthId = Auth::id();
 
-	    $message = 'El Usuario <strong>' .$user->name. '</strong> fue borrado.';
+	    if ($request->ajax()) {
 
-	    User::find($id)->delete();
+	    	if ($userAuthId == $id) {
+	    		$data = [
+					    'error'  => 'Raphael',
+					    'red'   => 22
+					];
+	    		// session()->flash('red', 'red!');
 
-	    if ($request->ajax() ) {
-	        return $message;
+			    return $data;
 	    }
-	  }
+	    
+	    	User::find($id)->delete();
+	    	$message = 'El Usuario<strong> '. $user->name .' </strong>fue borrado.';
+	    	return $message;
+	    }
+    }
+
 }

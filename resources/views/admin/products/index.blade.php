@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Listado de Usuarios')
+@section('title', 'Listado de Productos')
 
 <!-- Header Admin -->
 @section('header')
@@ -24,7 +24,7 @@
 
     <div class="row">
       <div class="col-md-12 text-center">
-        <h1>Listado de Usuarios</h1>
+        <h1>Listado de Productos</h1>
       </div>
     </div>
 
@@ -38,8 +38,8 @@
 
     <div class="row mb-3">            
       <div class="col-md-12 text-right">
-        <a href="{{ url('/admin/users/create') }}" type="button" class="transition btn btn-info btn-lg mb-2">
-          <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Usuario
+        <a href="{{ url('/admin/products/create') }}" type="button" class="transition btn btn-info btn-lg mb-2">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Producto
         </a>
       </div>
     </div>
@@ -52,34 +52,34 @@
           <thead>
             <tr class="active">
                 <th class="col-lg-1 col-md-1">#</th>
-                <th class="col-lg-2 col-md-2">Nombre</th>
-                <th class="col-lg-2 col-md-2">Apellido</th>
-                <th class="col-lg-2 col-md-2">Teléfono</th>
-                <th class="col-lg-3 col-md-3">Email</th>
-                <th class="col-lg-3 col-md-4 text-center">Opciones</th>
+                <th class="col-lg-1 col-md-1">Nombre</th>
+                <th class="col-lg-5 col-md-5">Descripción</th>
+                <th class="col-lg-1 col-md-1">Categoría</th>
+                <th class="col-lg-1 col-md-1">Imagen</th>
+                <th class="col-lg-3 col-md-3 text-center">Opciones</th>
             </tr>
           </thead>
 
           <tbody>
 
-            @foreach ($users as $user)
-              <tr data-id="{{ $user->id }}">
+            @foreach ($products as $product)
+              <tr data-id="{{ $product->id }}">
                 <td class="col-lg-1 col-md-1">
-                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->id }}</a>
+                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->id }}</a>
                 </td>
-                <td class="col-lg-2 col-md-2">
-                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->name }}</a>
+                <td class="col-lg-1 col-md-1">
+                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->name }}</a>
                 </td>
-                <td class="col-lg-2 col-md-2">
-                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->last_name }}</a>
+                <td class="col-lg-5 col-md-5">
+                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->description }}</a>
                 </td>
-                <td class="col-lg-2 col-md-2">
-                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->phone }}</a>
+                <td class="col-lg-1 col-md-1">
+                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->category->name }}</a>
                 </td>
-                <td class="col-lg-3 col-md-3">
-                  <a class="transition" href="{{ url('/admin/users/'.$user->id.'/show') }}">{{ $user->email }}</a>
+                <td class="col-lg-1 col-md-1">
+                  <img src="{{ $product->featured_image_url }}" width="50" alt="{{ $product->name }} - {{ $product->id }}">
                 </td>
-                <td class="col-lg-3 col-md-4 text-center">
+                <td class="col-lg-3 col-md-3 text-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-info">
                       <i class="fa fa-tasks" aria-hidden="true"></i>Acciones
@@ -90,20 +90,26 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li>
-                        <a href="{{ url('/admin/users/'.$user->id.'/show') }}" title="Ver Usuario">
-                          <i class="fa fa-eye"></i>Ver Usuario
+                        <a href="{{ url('/admin/products/'.$product->id.'/show') }}" title="Ver Producto">
+                          <i class="fa fa-eye"></i>Ver Producto
                         </a>
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" title="Editar Usuario">
-                          <i class="fa fa-edit"></i>Editar Usuario
+                        <a href="{{ url('/admin/products/'.$product->id.'/show') }}" title="Ver Producto">
+                          <i class="fa fa-eye"></i>Imágenes
                         </a>
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <button rel="tooltip" class="btn_delete_user btn-confirm transition" title="Eliminar Usuario">
-                          <i class="fa fa-user-times"></i>Eliminar Usuario
+                        <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" title="Editar Producto">
+                          <i class="fa fa-edit"></i>Editar Producto
+                        </a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <button rel="tooltip" class="btn_delete btn-confirm transition" title="Eliminar Producto">
+                          <i class="fa fa-user-times"></i>Eliminar Producto
                         </button>
                       </li>
                     </ul>
@@ -117,11 +123,11 @@
           <tfoot>
             <tr>
               <th class="col-lg-1 col-md-1">#</th>
-              <th class="col-lg-2 col-md-2">Nombre</th>
-              <th class="col-lg-2 col-md-2">Apellido</th>
-              <th class="col-lg-2 col-md-2">Teléfono</th>
-              <th class="col-lg-3 col-md-3">Email</th>
-              <th class="col-lg-3 col-md-4 text-center">Opciones</th>
+              <th class="col-lg-1 col-md-1">Nombre</th>
+              <th class="col-lg-5 col-md-5">Descripción</th>
+              <th class="col-lg-1 col-md-1">Categoría</th>
+              <th class="col-lg-1 col-md-1">Imagen</th>
+              <th class="col-lg-3 col-md-3 text-center">Opciones</th>
             </tr>
           </tfoot>
 
@@ -131,13 +137,13 @@
           
     <div class="row">
       <div class="col-md-12 text-center">
-        {{ $users->links() }}
+        {{ $products->links() }}
       </div>
     </div>
 
   </div>
 
-  <form action="{{ url('/admin/users/:USER_ID/') }}" method="DELETE" id="form-delete">
+  <form action="{{ url('/admin/products/:PRODUCT_ID/') }}" method="DELETE" id="form-delete">
     <input name="_method" type="hidden" value="DELETE">
     {{ csrf_field() }}
   </form>
@@ -162,12 +168,12 @@
       $("#modal-danger").modal('show');
     });
 
-    $('.btn_delete_user').click(function(){
+    $('.btn_delete').click(function(){
 
       var row = $(this).parents('tr');
       var id = row.data('id');
       var form = $('#form-delete');
-      var url = form.attr('action').replace(':USER_ID', id) ;
+      var url = form.attr('action').replace(':PRODUCT_ID', id) ;
       var data = form.serialize();
       row.fadeOut();
 

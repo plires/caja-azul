@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Crear Nuevo Usuario')
+@section('title', 'Crear Nuevo Producto')
 
 <!-- Header Admin -->
 @section('header')
@@ -20,7 +20,7 @@
 
     <div class="row">
     	<div class="col-md-12 text-center">
-        <h1>Nuevo Usuario</h1>
+        <h1>Nuevo Producto</h1>
       </div>
     </div>
 
@@ -52,51 +52,37 @@
       <div class="col-md-12">
         <div class="box box-primary box-body">
         
-          <form method="post" action="{{ url('/admin/users/') }}" enctype="multipart/form-data">
+          <form method="post" action="{{ url('/admin/products/') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row">
               <div class="col-md-6">
                 <label for="name">Nombre</label>
-                <input required type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name') }}">
+                <input  type="text" class="form-control" name="name" id="name" placeholder="Nombre del producto" value="{{ old('name') }}">
               </div>
               <div class="col-md-6">
-                <label for="last_name">Apellido</label>
-                <input required type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name') }}">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-md-6">
-                <label for="phone">Teléfono</label>
-                <input required type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone') }}">
-              </div>
-              <div class="col-md-6">
-                <label for="email">Email</label>
-                <input required type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email') }}">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-md-6">
-                <label for="type">Tipo de Usuario</label>
-                <select required id="type" name="type" class="form-control">
-                  <option value="Usuario" selected>Usuario</option>
-                  <option value="Administrador">Administrador</option>
+                <label for="category">Categoría</label>
+                <select  id="category" name="category" class="form-control">
+                  @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
                 </select>
               </div>
-              <div class="col-md-6">
-                <label for="password">Password</label>
-                <input required type="password" class="form-control" name="password" id="password" placeholder="Pass" value="{{ old('password') }}">
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-12">
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Descripción del producto ...">{{ old('description') }}</textarea>
               </div>
             </div>
 
             <div class="text-right">
-              <a href="{{ url('admin/users/') }}" type="button" class="transition btn btn-info">
-                <i class="fa fa-backward"></i>Cancelar
+              <a href="{{ url('admin/products/') }}" type="button" class="transition btn btn-info">
+                <i class="fa fa-backward"></i>Volver
               </a>
               <button type="submit" class="transition btn btn-info">
-                <i class="fa fa-save"></i>Registrar Usuario
+                <i class="fa fa-save"></i>Registrar Producto
               </button>
             </div>
             

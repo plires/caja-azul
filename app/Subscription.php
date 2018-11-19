@@ -2,7 +2,7 @@
 
 namespace App;
 
-use SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Status;
@@ -12,6 +12,8 @@ use App\SubscriptionDetail;
 
 class Subscription extends Model
 {
+  use SoftDeletes;
+
   //Subscription->status
   public function status(){
       return $this->belongsTo(Status::class);
@@ -31,5 +33,7 @@ class Subscription extends Model
   public function subscriptionDetail(){
     return $this->hasMany(SubscriptionDetail::class);
   }
+
+  protected $dates = ['deleted_at'];
 
 }

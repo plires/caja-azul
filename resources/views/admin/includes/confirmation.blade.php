@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal modal-danger fade" id="modal-delete-user">
+<div id="modal-danger" class="modal modal-danger fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,8 +11,8 @@
         <p>Esta seguro de eliminar este registro? Esta operación no se puede deshacer.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" id="modal-btn-si" class="btn btn-outline">Sí</button>
-        <button type="button" id="modal-btn-no" class="btn btn-outline" data-dismiss="modal">No</button>
+        <button id="modal-btn-si" type="button" class="btn btn-outline">Sí</button>
+        <button id="modal-btn-no" type="button" class="btn btn-outline" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>

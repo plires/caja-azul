@@ -5,7 +5,8 @@ use App\ProductImage;
 
 $factory->define(ProductImage::class, function (Faker $faker) {
     return [
-			'image' => $faker->imageUrl(300, 300),
-			'product_id' => $faker->numberBetween(1, 20)
+			'image' 			=> $faker->imageUrl(300, 300),
+			'featured' 		=> 0,
+			'product_id' 	=> $faker->numberBetween(1, 20)
     ];
 });

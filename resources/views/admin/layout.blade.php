@@ -23,12 +23,6 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('adminlte/bower_components/font-awesome/css/font-awesome.min.css') }}">
 
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ asset('adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
-
-  <!-- Animated CSS -->
-  <link rel="stylesheet" type="text/css" href="{{ asset('adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
-
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte/css/AdminLTE.min.css') }}">
 

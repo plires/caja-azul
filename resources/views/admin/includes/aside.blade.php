@@ -1,4 +1,4 @@
-<!-- Left side column. contains the logo and sidebar -->
+Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
   <!-- sidebar: style can be found in sidebar.less -->
@@ -31,9 +31,8 @@
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">HEADER</li>
-      <!-- Optionally, you can add icons to the links -->
-      {{-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Usuarios</span></a></li> --}}
-      {{-- <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> --}}
+      
+      {{-- USUARIOS --}}
       <li class="treeview">
         <a class="transition" href="#"><i class="ion-person-stalker"></i> <span>Usuarios</span>
           <span class="pull-right-container">
@@ -41,13 +40,46 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a class="transition" href="{{ url('/admin/users') }}"><i class="ion-android-list"></i>Listar Usuarios</a></li>
-          <li><a class="transition" href="{{ url('/admin/users/create') }}"><i class="ion-person-add"></i>Agregar Usuarios</a></li>
+          <li>
+            <a class="transition" href="{{ url('/admin/users') }}">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>Listar Usuarios
+            </a>
+          </li>
+          <li>
+            <a class="transition" href="{{ url('/admin/users/create') }}">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Usuarios
+            </a>
+          </li>
         </ul>
       </li>
+      {{-- USUARIOS END --}}
+
+      {{-- PRODUCTOS --}}
+      <li class="treeview">
+        <a class="transition" href="#"><i class="ion-person-stalker"></i> <span>Productos</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a class="transition" href="{{ url('/admin/products') }}">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>Listar Productos
+            </a>
+          </li>
+          <li>
+            <a class="transition" href="{{ url('/admin/products/create') }}">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Productos
+            </a>
+          </li>
+        </ul>
+      </li>
+      {{-- PRODUCTOS END --}}
+
+
     </ul>
     <!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->
 </aside>
-<!-- Left side column. contains the logo and sidebar end -->
+<!-- Left side column. contains the logo and sidebar end

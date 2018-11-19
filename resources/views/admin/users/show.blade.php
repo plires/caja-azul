@@ -27,36 +27,57 @@
 
     <div class="row">
 
-      <div class="col-md-3">
-        <div class="box box-primary">
-          <div class="box-body box-profile">
+      <div class="col-md-4">
+        <div class="box box-widget widget-user-2">
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header bg-aqua-active text-center">
+            <!-- /.widget-user-image -->
+            <h3 class="profile-username text-center"><i class="fa fa-user"></i>{{ $user->name }} {{ $user->last_name }}</h3>
+            <h5 class="widget-user-desc">{{ $user->type }}</h5>
+          </div>
+          <div class="box-footer no-padding">
+            <ul class="nav nav-stacked">
 
-            <h3 class="profile-username text-center">{{ $user->name }} {{ $user->last_name }}</h3>
+              <li>
+                <a href="#"><b><i class="fa fa-phone"></i>Teléfono</b>
+                  <span class="pull-right {{-- badge bg-blue --}}">{{ $user->phone }}</span>
+                </a>
+              </li>
 
-            <ul class="list-group list-group-unbordered">
-              <li class="list-group-item">
-                <b>Teléfono</b> <a class="pull-right">{{ $user->phone }}</a>
+              <li>
+                <a href="#"><b><i class="fa fa-envelope"></i>Email</b>
+                  <span class="pull-right {{-- badge bg-blue --}}">{{ $user->email }}</span>
+                </a>
               </li>
-              <li class="list-group-item">
-                <b>Email</b> <a class="pull-right">{{ $user->email }}</a>
+
+              <li>
+                <a href="#"><i class="fa fa-users"></i></i>Tipo de Usuario</b>
+                  <span class="pull-right {{-- badge bg-blue --}}">{{ $user->type }}</span>
+                </a>
               </li>
-              <li class="list-group-item">
-                <b>Tipo de Usuario</b> <a class="pull-right">{{ $user->type }}</a>
-              </li>
+
             </ul>
 
-            <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" class="btn btn-primary btn-block"><b>Editar</b></a>
           </div>
-          <!-- /.box-body -->
+          <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" type="button" class="transition btn btn-info btn-block">
+              <i class="fa fa-edit"></i>Editar
+            </a>
         </div>
-        <!-- /.box -->
       </div>
 
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#address" data-toggle="tab">Direcciones de Entrega</a></li>
-            <li><a href="#subscriptions" data-toggle="tab">Subscripciones</a></li>
+            <li class="active">
+              <a href="#address" data-toggle="tab">
+                <i class="fa fa-map-pin"></i>Direcciones de Entrega
+              </a>
+            </li>
+            <li>
+              <a href="#subscriptions" data-toggle="tab">
+                <i class="fa fa-usd" aria-hidden="true"></i>Subscripciones
+              </a>
+            </li>
           </ul>
           <div class="tab-content">
 
@@ -80,7 +101,7 @@
 
                     @foreach ($addresses as $address)
                       <tr data-id="{{ $address->id }}">
-                        <td class="col-lg-1 col-md-1">
+                        <td class="col-lg-2 col-md-1">
                           {{ $address->id }}
                         </td>
                         <td class="col-lg-2 col-md-2">
@@ -137,7 +158,7 @@
 
                     @foreach ($subscriptions as $subscription)
                       <tr data-id="{{ $subscription->id }}">
-                        <td class="col-lg-1 col-md-1">
+                        <td class="col-lg-2 col-md-2">
                           {{ $subscription->id }}
                         </td>
                         <td class="col-lg-2 col-md-2">
@@ -160,7 +181,7 @@
                           </span>
                           @endif
                         </td>
-                        <td class="col-lg-2 col-md-2">
+                        <td class="col-lg-4 col-md-4">
                           {{ $subscription->fishBox->name }}
                         </td>
                         <td class="col-lg-2 col-md-2">

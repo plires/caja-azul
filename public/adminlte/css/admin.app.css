@@ -4,3 +4,52 @@
 .ml-1 { margin-left: 10px!important; }
 .mb-2 { margin-bottom: 20px!important; }
 .mt-2 { margin-top: 20px!important; }
+
+.table-responsive { overflow-x: visible; }
+.dropdown-menu { z-index: 999;left: -40px; }
+.dropdown-menu > li > button {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    border: none;
+    background-color: transparent;
+    color: red;
+}
+
+.dropdown-menu > li > button:hover {
+    background-color: red;
+    color: white;
+}
+
+.widget-user-2 .widget-user-username, .widget-user-2 .widget-user-desc{
+    margin: 0;
+}
+
+/* MEDIA QUERIES */
+
+/* Dispositivos extra pequeños (teléfonos de retrato, menos de 576px) */
+@media (max-width: 575.98px) { 
+}
+/* Dispositivos pequeños (teléfonos apaisados, 576px y más) */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+	/*.table-responsive { overflow-y: visible!important; }*/
+
+}
+
+/* Dispositivos medianos (tabletas, 768px y más) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+/* Dispositivos grandes (escritorios, 992px y más) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+/* Dispositivos extragrandes (escritorios grandes, 1200px y más) */
+@media (min-width: 1200px) { 
+}

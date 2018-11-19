@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Editar usuario')
+@section('title', 'Editar producto')
 
 <!-- Header Admin -->
 @section('header')
@@ -20,7 +20,7 @@
     
     <div class="row">
     	<div class="col-md-12 text-center">
-        <h1>Editar Usuario {{ $user->name }}</h1>
+        <h1>Editar Producto {{ $product->name }}</h1>
       </div>
     </div>
 
@@ -52,62 +52,46 @@
       <div class="col-md-12">
         <div class="box box-primary box-body">
 
-          <form method="post" action="{{ url('/admin/users/'.$user->id.'/edit') }}" enctype="multipart/form-data">
+           <form method="post" action="{{ url('/admin/products/'.$product->id.'/edit') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row">
               <div class="col-md-6">
                 <label for="name">Nombre</label>
-                <input required type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name', $user->name) }}">
+                <input  type="text" class="form-control" name="name" id="name" placeholder="Nombre del producto" value="{{ old('name', $product->name) }}">
               </div>
               <div class="col-md-6">
-                <label for="last_name">Apellido</label>
-                <input required type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name', $user->last_name) }}">
+                <label for="category">Categoría</label>
+                <select  id="category" name="category" class="form-control">
+                  @foreach($categories as $category)
+                    <option value="{{ $category->id }}"
+                      @if($product->category_id == $category->id )
+                      selected
+                      @endif
+                      >{{ $category->name }}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
 
             <div class="form-group row">
-
-              <div class="col-md-4">
-                <label for="phone">Teléfono</label>
-                <input required type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone', $user->phone) }}">
+              <div class="col-md-12">
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" class="form-control" rows="6" placeholder="Descripción del producto ...">{{ old('description', $product->description) }}</textarea>
               </div>
-
-              <div class="col-md-4">
-                <label for="email">Email</label>
-                <input required type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email', $user->email) }}">
-              </div>
-
-              <div class="col-md-4">
-                <label for="type">Tipo de Usuario</label>
-                <select id="type" name="type" class="form-control">
-                  <option value="Administrador" 
-                    @if ($user->type == old('type', 'Administrador'))
-                      selected
-                    @endif>
-                    Administrador
-                  </option>
-                  <option value="Usuario" 
-                    @if ($user->type == old('type', 'Usuario'))
-                      selected
-                    @endif>
-                    Usuario
-                  </option>
-                </select>
-              </div>
-
             </div>
 
             <div class="text-right">
-              <a href="{{ url('admin/users/') }}" type="button" class="transition btn btn-info">
-                <i class="fa fa-backward"></i>Cancelar
+              <a href="{{ url('admin/products/') }}" type="button" class="transition btn btn-info">
+                <i class="fa fa-backward"></i>Volver
               </a>
               <button type="submit" class="transition btn btn-info">
                 <i class="fa fa-save"></i>Guardar Cambios
               </button>
             </div>
-
+            
           </form>
+
         </div>
       </div>
     </div>

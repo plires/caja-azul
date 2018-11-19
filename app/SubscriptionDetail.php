@@ -2,7 +2,7 @@
 
 namespace App;
 
-use SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Product;
@@ -11,6 +11,8 @@ use App\DiscountCode;
 
 class SubscriptionDetail extends Model
 {
+	use SoftDeletes;
+	
 	//SubscriptionDetail->subscription
   public function subscription(){
     return $this->belongsTo(Subscription::class);
@@ -27,5 +29,7 @@ class SubscriptionDetail extends Model
 	{
 		return $this->belongsTo(DiscountCode::class);
 	}
+
+	protected $dates = ['deleted_at'];
 
 }
