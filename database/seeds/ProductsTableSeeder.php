@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 
 use App\Category;
 use App\ProductImage;
@@ -22,12 +21,14 @@ class ProductsTableSeeder extends Seeder
     		$products = factory(Product::class, 10)->make();
     		$c->products()->saveMany($products);
 
+
     		$products->each(function($p){
-    			ProductImage::create([
-		        'image'        => 'https://lorempixel.com/300/300/?57325',
-     				'featured'     => 1,
-	     			'product_id'   => $p->id
-		      ]);
+
+                ProductImage::create([
+                    'image'        => \Faker\Factory::create()->imageUrl(300, 300),
+                    'featured'     => 1,
+                    'product_id'   => $p->id
+                ]);
 		      
     			$images = factory(ProductImage::class, 3)->make();
     			$p->images()->saveMany($images);

@@ -78,7 +78,6 @@ class ProductController extends Controller
       'category.required' => 'Ingresá una categoría.',
       'category.max' => 'El campo categoría no puede exceder los 100 caracteres.',
       'description.required' => 'Ingresá la descripción del producto.',
-      'description.numeric' => 'El campo descripción no puede exceder los 500 caracteres.',
       'description.max' => 'El campo descripción no puede exceder los 1000 caracteres.'
     ];
 

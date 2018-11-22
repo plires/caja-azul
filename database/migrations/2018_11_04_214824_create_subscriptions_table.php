@@ -18,6 +18,7 @@ class CreateSubscriptionsTable extends Migration
 
             $table->date('order_date');
             $table->date('arrival_date');
+            $table->string('frecuency');
             $table->integer('total');
 
             // FK

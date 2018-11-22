@@ -31,6 +31,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('/products/{id}/show', 'ProductController@show'); // Muestra el productos
 	Route::delete('/products/{id}', 'ProductController@delete'); // elimina el productos
 
+	// Rutas para Admin.Categories
+	Route::get('/categories', 'CategoryController@index'); // listado de categorias
+	Route::get('/categories/create', 'CategoryController@create'); // Muestra el formulario de registro de categorias
+	Route::post('/categories', 'CategoryController@store'); // Registra la nueva categoria
+	Route::get('/categories/{id}/edit', 'CategoryController@edit'); // Muestra el formulario de edicion de una categoria
+	Route::post('/categories/{id}/edit', 'CategoryController@update'); // Actualiza la categoria
+	Route::delete('/categories/{id}', 'CategoryController@delete'); // elimina la categoria
+
+	// Rutas para Admin.Discount Codes
+	Route::get('/discount_codes', 'DiscountCodesController@index'); // listado de cupones
+
 	// Rutas para las imagenes del producto
 	// Route::get('/products/{id}/images', 'ImageController@index'); // listado de las imagenes del productos
 	Route::post('/products/{id}/images', 'ImageController@store'); // Registra la nueva imagenes del producto

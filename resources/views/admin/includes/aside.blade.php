@@ -76,6 +76,50 @@ Left side column. contains the logo and sidebar -->
       </li>
       {{-- PRODUCTOS END --}}
 
+      {{-- CATEGORIAS --}}
+      <li class="treeview">
+        <a class="transition" href="#"><i class="ion-person-stalker"></i> <span>Categorias</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a class="transition" href="{{ url('/admin/categories') }}">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>Listar Categorias
+            </a>
+          </li>
+          <li>
+            <a class="transition" href="{{ url('/admin/categories/create') }}">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Categorias
+            </a>
+          </li>
+        </ul>
+      </li>
+      {{-- CATEGORIAS END --}}
+
+      {{-- CUPONES DE DESCUENTO --}}
+      <li class="treeview">
+        <a class="transition" href="#"><i class="ion-person-stalker"></i> <span>Cupones</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a class="transition" href="{{ url('/admin/discount_codes') }}">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>Listar Cupones
+            </a>
+          </li>
+          <li>
+            <a class="transition" href="{{ url('/admin/discount_codes/create') }}">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Cupones
+            </a>
+          </li>
+        </ul>
+      </li>
+      {{-- CUPONES DE DESCUENTO END --}}
+
 
     </ul>
     <!-- /.sidebar-menu -->

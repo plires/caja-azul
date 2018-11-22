@@ -12,6 +12,28 @@ class AddressesTableSeeder extends Seeder
      */
     public function run()
     {
-			factory(Address::class, 50)->create();
+			Address::create([
+        'user_id'				=>	1,
+	    	'street'				=>	\Faker\Factory::create()->streetName(),
+				'number'				=>	\Faker\Factory::create()->buildingNumber(),
+				'departament'		=>	\Faker\Factory::create()->city(),
+				'floor'					=>	\Faker\Factory::create()->city(),
+				'locality'			=>	\Faker\Factory::create()->state(),
+				'cp'						=>	\Faker\Factory::create()->postcode(),
+				'state'					=>	\Faker\Factory::create()->state(),
+				'country'				=>	\Faker\Factory::create()->country()
+      ]);
+
+      Address::create([
+        'user_id'				=>	1,
+	    	'street'				=>	\Faker\Factory::create()->streetName(),
+				'number'				=>	\Faker\Factory::create()->buildingNumber(),
+				'departament'		=>	\Faker\Factory::create()->city(),
+				'floor'					=>	\Faker\Factory::create()->city(),
+				'locality'			=>	\Faker\Factory::create()->state(),
+				'cp'						=>	\Faker\Factory::create()->postcode(),
+				'state'					=>	\Faker\Factory::create()->state(),
+				'country'				=>	\Faker\Factory::create()->country()
+      ]);
     }
 }

@@ -42,7 +42,6 @@ class UserController extends Controller
 	      'last_name.required' => 'Ingresá tu apellido.',
 	      'last_name.max' => 'El campo nombre no puede exceder los 100 caracteres.',
 	      'phone.required' => 'Ingresá un teléfono.',
-	      'phone.numeric' => 'Ingrese un valor numerico para el campo teléfono (11 5 054 8421).',
 	      'phone.min' => 'No se admiten valores negativos para el campo teléfono (-11...).',
 	      'email.required' => 'Ingresá un email.',
 	      'email.email' => 'Ingrese un email válido.',
@@ -56,7 +55,7 @@ class UserController extends Controller
 	    $rules =[
 	      'name' => 'required|max:100',
 	      'last_name' => 'required|max:100',
-	      'phone' => 'required|numeric|min:0',
+	      'phone' => 'required|min:0',
 	      'email' => 'required|email|max:100|unique:users',
 	      'password' => 'required|max:16|min:6'
 	    ];
@@ -96,7 +95,6 @@ class UserController extends Controller
 	      'last_name.required' => 'Ingresá tu apellido.',
 	      'last_name.max' => 'El campo nombre no puede exceder los 100 caracteres.',
 	      'phone.required' => 'Ingresá un teléfono.',
-	      'phone.numeric' => 'Ingrese un valor numerico para el campo teléfono (11 5 054 8421).',
 	      'phone.min' => 'No se admiten valores negativos para el campo teléfono (-11...).',
 	      'email.required' => 'Ingresá un email.',
 	      'email.email' => 'Ingrese un email válido.',
@@ -106,7 +104,7 @@ class UserController extends Controller
 	    $rules =[
 	      'name' => 'required|max:100',
 	      'last_name' => 'required|max:100',
-	      'phone' => 'required|numeric|min:0',
+	      'phone' => 'required|min:0',
 	      'email' => 'required|email|max:100'
 	    ];
 

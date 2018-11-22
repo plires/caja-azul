@@ -5,6 +5,10 @@
 .mb-2 { margin-bottom: 20px!important; }
 .mt-2 { margin-top: 20px!important; }
 
+.fadeOut {opacity: 0.2;}
+.hidden {display: none!important; visibility: hidden!important;}
+.show {display: inline-block;!important; visibility: visible!important;}
+
 .table-responsive { overflow-x: visible; }
 .dropdown-menu { z-index: 999;left: -40px; }
 .dropdown-menu > li > button {

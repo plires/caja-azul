@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 use App\ProductImage;
+use File;
 
 class ImageController extends Controller
 {
@@ -27,9 +29,8 @@ class ImageController extends Controller
       // Guardamos el archivo en el servidor
       $file = $request->file('photo');
 
-      $path = storage_path('public/images/products');
+      $path = public_path('storage/images/products/' . $id . '/');
 
-      // $path = storage_path() . '/images/products';
       $fileName = uniqid() . $file->getClientOriginalName();
       $moved = $file->move($path, $fileName);
 
@@ -52,23 +53,34 @@ class ImageController extends Controller
       
       $productImage = ProductImage::find($id);
 
-      if ($request->ajax()) {
-
       if (substr($productImage->image, 0, 4) === 'http') {
+        // Si el campo en la base de datos comienza por 'http'
         $deleted = true;
+
       } else {
-        $fullPath = public_path() . '/images/products/' . $productImage->image;
-        $deleted = file::delete($fullPath);
+        // Si el campo en la base solo tiene el nombre del archivo
+        $fullPath = public_path() . '/storage/images/products/' . $productImage->product_id . '/' . $productImage->image;
+        // elimino la imagen en el servidor
+        $deleted = File::delete($fullPath);
+
+        
       }
 
-      // Si se elimino la imagen en el servidor
       if ($deleted){
         // Borramos el registro en la bdd
         $productImage->delete();
       }
 
-      $message = 'La imagen fue borrada.';
-      return $message;
+      if ($request->ajax()) {
+
+        $message = 'La imagen fue borrada.';
+
+        // return response()->json([
+        //     'status' => $data[1], 
+        //     'message' => $message
+        // ]);
+
+        return $message;
       }
 
     }

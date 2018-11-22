@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Listado de Productos')
+@section('title', 'Listado de Cupones de Descuento')
 
 <!-- Header Admin -->
 @section('header')
@@ -24,7 +24,7 @@
 
     <div class="row">
       <div class="col-md-12 text-center">
-        <h1>Listado de Productos</h1>
+        <h1>Listado de Cupones de Descuento</h1>
       </div>
     </div>
 
@@ -38,8 +38,8 @@
 
     <div class="row mb-3">            
       <div class="col-md-12 text-right">
-        <a href="{{ url('/admin/products/create') }}" type="button" class="transition btn btn-info btn-lg mb-2">
-          <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Producto
+        <a href="{{ url('/admin/users/create') }}" type="button" class="transition btn btn-info btn-lg mb-2">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Cupon de Descuento
         </a>
       </div>
     </div>
@@ -51,35 +51,35 @@
 
           <thead>
             <tr class="active">
-                <th class="col-lg-1 col-md-1">#</th>
-                <th class="col-lg-1 col-md-1">Nombre</th>
-                <th class="col-lg-5 col-md-5">Descripción</th>
-                <th class="col-lg-1 col-md-1">Categoría</th>
-                <th class="col-lg-1 col-md-1">Imagen</th>
-                <th class="col-lg-3 col-md-3 text-center">Opciones</th>
+              <th class="col-md-2">Nombre</th>
+              <th class="col-md-4">Descripcion</th>
+              <th class="col-md-1 text-center">Desde</th>
+              <th class="col-md-1 text-center">Hasta</th>
+              <th class="col-md-1 text-center">Descuento</th>
+              <th class="col-md-3 text-center">Opciones</th>
             </tr>
           </thead>
 
           <tbody>
 
-            @foreach ($products as $product)
-              <tr data-id="{{ $product->id }}">
-                <td class="col-lg-1 col-md-1">
-                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->id }}</a>
+            @foreach ($discountsCodes as $discount)
+              <tr data-id="{{ $discount->id }}">
+                <td class="col-md-2">
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->name }}</a>
                 </td>
-                <td class="col-lg-1 col-md-1">
-                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->name }}</a>
+                <td class="col-md-4">
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->description }}</a>
                 </td>
-                <td class="col-lg-5 col-md-5">
-                  <a class="transition" href="{{ url('/admin/products/'.$product->id.'/show') }}">{{ $product->description }}</a>
+                <td class="col-md-1 text-center">
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->start_date }}</a>
                 </td>
-                <td class="col-lg-1 col-md-1">
-                  <a class="transition" href="{{ url('/admin/categories') }}">{{ $product->category->name }}</a>
+                <td class="col-md-1 text-center">
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->start_date }}</a>
                 </td>
-                <td class="col-lg-1 col-md-1">
-                  <img src="{{ $product->featured_image_url }}" width="50" alt="{{ $product->name }} - {{ $product->id }}">
+                <td class="col-md-1 text-center">
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->discount }}</a>
                 </td>
-                <td class="col-lg-3 col-md-3 text-center">
+                <td class="col-md-3 text-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-info">
                       <i class="fa fa-tasks" aria-hidden="true"></i>Acciones
@@ -90,26 +90,20 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li>
-                        <a href="{{ url('/admin/products/'.$product->id.'/show') }}" title="Ver Producto">
-                          <i class="fa fa-eye"></i>Ver Producto
+                        <a href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}" title="Ver Cupon">
+                          <i class="fa fa-eye"></i>Ver Cupon
                         </a>
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <a href="{{ url('/admin/products/'.$product->id.'/show') }}" title="Ver Producto">
-                          <i class="fa fa-eye"></i>Imágenes
+                        <a href="{{ url('/admin/discount_codes/'.$discount->id.'/edit') }}" title="Editar Cupon">
+                          <i class="fa fa-edit"></i>Editar Cupon
                         </a>
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" title="Editar Producto">
-                          <i class="fa fa-edit"></i>Editar Producto
-                        </a>
-                      </li>
-                      <li class="divider"></li>
-                      <li>
-                        <button rel="tooltip" class="btn_delete btn-confirm transition" title="Eliminar Producto">
-                          <i class="fa fa-user-times"></i>Eliminar Producto
+                        <button rel="tooltip" class="btn_delete_user btn-confirm transition" title="Eliminar Cupon">
+                          <i class="fa fa-user-times"></i>Eliminar Cupon
                         </button>
                       </li>
                     </ul>
@@ -122,12 +116,12 @@
 
           <tfoot>
             <tr>
-              <th class="col-lg-1 col-md-1">#</th>
-              <th class="col-lg-1 col-md-1">Nombre</th>
-              <th class="col-lg-5 col-md-5">Descripción</th>
-              <th class="col-lg-1 col-md-1">Categoría</th>
-              <th class="col-lg-1 col-md-1">Imagen</th>
-              <th class="col-lg-3 col-md-3 text-center">Opciones</th>
+              <th class="col-md-2">Nombre</th>
+              <th class="col-md-4">Descripcion</th>
+              <th class="col-md-1 text-center">Desde</th>
+              <th class="col-md-1 text-center">Hasta</th>
+              <th class="col-md-1 text-center">Descuento</th>
+              <th class="col-md-3 text-center">Opciones</th>
             </tr>
           </tfoot>
 
@@ -137,13 +131,13 @@
           
     <div class="row">
       <div class="col-md-12 text-center">
-        {{ $products->links() }}
+        {{ $discountsCodes->links() }}
       </div>
     </div>
 
   </div>
 
-  <form action="{{ url('/admin/products/:PRODUCT_ID/') }}" method="DELETE" id="form-delete">
+  <form action="{{ url('/admin/users/:CUPON_ID/') }}" method="DELETE" id="form-delete">
     <input name="_method" type="hidden" value="DELETE">
     {{ csrf_field() }}
   </form>
@@ -168,12 +162,12 @@
       $("#modal-danger").modal('show');
     });
 
-    $('.btn_delete').click(function(){
+    $('.btn_delete_user').click(function(){
 
       var row = $(this).parents('tr');
       var id = row.data('id');
       var form = $('#form-delete');
-      var url = form.attr('action').replace(':PRODUCT_ID', id) ;
+      var url = form.attr('action').replace(':CUPON_ID', id) ;
       var data = form.serialize();
       row.fadeOut();
 

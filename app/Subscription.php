@@ -9,6 +9,7 @@ use App\Status;
 use App\User;
 use App\FishBox;
 use App\SubscriptionDetail;
+use App\Address;
 
 class Subscription extends Model
 {
@@ -32,6 +33,11 @@ class Subscription extends Model
   //Subscription->subscriptionDetail
   public function subscriptionDetail(){
     return $this->hasMany(SubscriptionDetail::class);
+  }
+
+  //Subscription->address
+  public function address(){
+    return $this->HasOne(Address::class);
   }
 
   protected $dates = ['deleted_at'];
