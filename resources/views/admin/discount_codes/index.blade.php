@@ -38,7 +38,7 @@
 
     <div class="row mb-3">            
       <div class="col-md-12 text-right">
-        <a href="{{ url('/admin/users/create') }}" type="button" class="transition btn btn-info btn-lg mb-2">
+        <a href="{{ url('/admin/discount_codes/create') }}" type="button" class="transition btn btn-info btn-lg mb-2">
           <i class="fa fa-user-plus" aria-hidden="true"></i>Agregar Cupon de Descuento
         </a>
       </div>
@@ -71,10 +71,14 @@
                   <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->description }}</a>
                 </td>
                 <td class="col-md-1 text-center">
-                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->start_date }}</a>
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">
+                    {{ \Carbon\Carbon::parse($discount->start_date)->format('d/m/Y') }}
+                  </a>
                 </td>
                 <td class="col-md-1 text-center">
-                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->start_date }}</a>
+                  <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">
+                    {{ \Carbon\Carbon::parse($discount->end_date)->format('d/m/Y') }}
+                  </a>
                 </td>
                 <td class="col-md-1 text-center">
                   <a class="transition" href="{{ url('/admin/discount_codes/'.$discount->id.'/show') }}">{{ $discount->discount }}</a>
@@ -137,7 +141,7 @@
 
   </div>
 
-  <form action="{{ url('/admin/users/:CUPON_ID/') }}" method="DELETE" id="form-delete">
+  <form action="{{ url('/admin/discount_codes/:CUPON_ID/') }}" method="DELETE" id="form-delete">
     <input name="_method" type="hidden" value="DELETE">
     {{ csrf_field() }}
   </form>

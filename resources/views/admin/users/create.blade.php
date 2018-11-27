@@ -58,36 +58,43 @@
             <div class="form-group row">
               <div class="col-md-6">
                 <label for="name">Nombre</label>
-                <input required type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name') }}">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name') }}">
               </div>
               <div class="col-md-6">
                 <label for="last_name">Apellido</label>
-                <input required type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name') }}">
+                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name') }}">
               </div>
             </div>
 
             <div class="form-group row">
               <div class="col-md-6">
                 <label for="phone">Teléfono</label>
-                <input required type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone') }}">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone') }}">
               </div>
               <div class="col-md-6">
                 <label for="email">Email</label>
-                <input required type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email') }}">
+                <input type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email') }}">
               </div>
             </div>
 
             <div class="form-group row">
               <div class="col-md-6">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Pass">
+              </div>
+              <div class="col-md-6">
+                <label for="password_confirmation">Password</label>
+                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirme su Pass">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-12">
                 <label for="type">Tipo de Usuario</label>
-                <select required id="type" name="type" class="form-control">
+                <select id="type" name="type" class="form-control">
                   <option value="Usuario" selected>Usuario</option>
                   <option value="Administrador">Administrador</option>
                 </select>
-              </div>
-              <div class="col-md-6">
-                <label for="password">Password</label>
-                <input required type="password" class="form-control" name="password" id="password" placeholder="Pass" value="{{ old('password') }}">
               </div>
             </div>
 

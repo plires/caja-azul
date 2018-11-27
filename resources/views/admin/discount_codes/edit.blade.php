@@ -1,6 +1,13 @@
 @extends('admin.layout')
 
-@section('title', 'Editar usuario')
+<!-- Extra css -->
+@section('extra_css')
+<!-- Datepicker -->
+<link rel="stylesheet" href="{{ asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+@endsection
+<!-- Extra css end -->
+
+@section('title', 'Editar Cupon de Descuento')
 
 <!-- Header Admin -->
 @section('header')
@@ -20,7 +27,7 @@
     
     <div class="row">
     	<div class="col-md-12 text-center">
-        <h1>Editar Usuario {{ $user->name }}</h1>
+        <h1>Editar Cupon de Descuento {{ $discountCode->name }}</h1>
       </div>
     </div>
 
@@ -51,63 +58,78 @@
     <div class="row">
       <div class="col-md-12">
         <div class="box box-primary box-body">
-
-          <form method="post" action="{{ url('/admin/users/'.$user->id.'/edit') }}" enctype="multipart/form-data">
+        
+          <form method="post" action="{{ url('/admin/discount_codes/'. $discountCode->id .'/edit') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="name">Nombre</label>
-                <input required type="text" class="form-control" name="name" id="name" placeholder="Juan" value="{{ old('name', $user->name) }}">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del cupon" value="{{ old('name', $discountCode->name) }}">
               </div>
-              <div class="col-md-6">
-                <label for="last_name">Apellido</label>
-                <input required type="text" class="form-control" name="last_name" id="last_name" placeholder="Perez" value="{{ old('last_name', $user->last_name) }}">
+              <div class="col-md-12">
+                <label for="description">Apellido</label>
+                <textarea class="form-control" rows="6" name="description" id="description" placeholder="Descripcion y alcance del descuento...">{{ old('description', $discountCode->description) }}</textarea>
               </div>
             </div>
 
-            <div class="form-group row">
-
-              <div class="col-md-4">
-                <label for="phone">Teléfono</label>
-                <input required type="text" class="form-control" name="phone" id="phone" placeholder="115 052 5504" value="{{ old('phone', $user->phone) }}">
+            <div class="box box-primary">
+              <div class="box-header">
+                <h3 class="box-title">Rango de fechas</h3>
               </div>
+              <div class="box-body">
+                
+                <!-- Date -->
+                <div class="form-group">
+                  <label>Válido desde:</label>
 
-              <div class="col-md-4">
-                <label for="email">Email</label>
-                <input required type="email" class="form-control" name="email" id="email" placeholder="juan@xxx.com" value="{{ old('email', $user->email) }}">
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right datepicker" name="start_date" id="start_date" data-provide="datepicker" value="{{ old('start_date', date('d-m-Y', strtotime($discountCode->start_date))) }}">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                <!-- /.form group -->
+
+                <!-- Date -->
+                <div class="form-group">
+                  <label>Válido hasta:</label>
+
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right datepicker" name="end_date" id="end_date" data-provide="datepicker" value="{{ old('end_date', date('d-m-Y', strtotime($discountCode->end_date))) }}">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                <!-- /.form group -->
+
               </div>
+              <!-- /.box-body -->
 
-              <div class="col-md-4">
-                <label for="type">Tipo de Usuario</label>
-                <select id="type" name="type" class="form-control">
-                  <option value="Administrador" 
-                    @if ($user->type == old('type', 'Administrador'))
-                      selected
-                    @endif>
-                    Administrador
-                  </option>
-                  <option value="Usuario" 
-                    @if ($user->type == old('type', 'Usuario'))
-                      selected
-                    @endif>
-                    Usuario
-                  </option>
-                </select>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="discount">% Descuento</label>
+                  <input type="number" class="form-control" name="discount" id="discount" placeholder="% de Descuento a aplicar" value="{{ old('discount', $discountCode->discount) }}">
+                </div>
               </div>
 
             </div>
 
             <div class="text-right">
-              <a href="{{ url('admin/users/') }}" type="button" class="transition btn btn-info">
+              <a href="{{ url('admin/discount_codes/') }}" type="button" class="transition btn btn-info">
                 <i class="fa fa-backward"></i>Cancelar
               </a>
               <button type="submit" class="transition btn btn-info">
-                <i class="fa fa-save"></i>Guardar Cambios
+                <i class="fa fa-save"></i>Registrar Cupon de descuento
               </button>
             </div>
-
+            
           </form>
+
         </div>
       </div>
     </div>
@@ -121,3 +143,26 @@
   @include('admin.includes.footer')
 @endsection
 <!-- Footer Admin end -->
+
+<!-- Extra js -->
+@section('scripts')
+
+<!-- Datapicker -->
+<script src="{{ asset('adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+
+<script src="{{ asset('adminlte/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js') }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $('.datepicker').datepicker({
+      pickTime: false,
+      format : 'dd-mm-yyyy',
+      autoclose: true,
+      language: 'es'
+    });
+  });
+</script>
+
+@endsection
+<!-- Extra js end -->

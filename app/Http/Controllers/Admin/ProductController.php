@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProductRequest;
 
 use App\Product;
 use App\ProductImage;
@@ -30,25 +31,8 @@ class ProductController extends Controller
 	  return view('admin/products.show', compact('product', 'images'));
 	}
 
-	public function store(request $request) 
+	public function store(CreateProductRequest $request) 
   {
-    $messages = [
-      'name.required' => 'Ingresá el nombre del producto.',
-      'name.max' => 'El campo nombre no puede exceder los 100 caracteres.',
-      'category.required' => 'Ingresá una categoría.',
-      'category.max' => 'El campo categoría no puede exceder los 100 caracteres.',
-      'description.required' => 'Ingresá la descripción del producto.',
-      'description.numeric' => 'El campo descripción no puede exceder los 500 caracteres.'
-    ];
-
-    $rules =[
-      'name' => 'required|max:100',
-      'category' => 'required|max:100',
-      'description' => 'required|max:1000'
-    ];
-
-    $this->validate($request, $rules, $messages);
-
     $product = new Product();
     $product->name = $request->input('name');
     $product->category_id = $request->input('category');
@@ -68,27 +52,10 @@ class ProductController extends Controller
     return view('admin.products.edit')->with(compact('product', 'categories')); // ver formulario de Edicion
   }
 
-  public function update(request $request, $id) 
+  public function update(CreateProductRequest $request, $id) 
   {
   	$product = Product::find($id);
-
-    $messages = [
-      'name.required' => 'Ingresá el nombre del producto.',
-      'name.max' => 'El campo nombre no puede exceder los 100 caracteres.',
-      'category.required' => 'Ingresá una categoría.',
-      'category.max' => 'El campo categoría no puede exceder los 100 caracteres.',
-      'description.required' => 'Ingresá la descripción del producto.',
-      'description.max' => 'El campo descripción no puede exceder los 1000 caracteres.'
-    ];
-
-    $rules =[
-      'name' => 'required|max:100',
-      'category' => 'required|max:100',
-      'description' => 'required|max:1000'
-    ];
-
-    $this->validate($request, $rules, $messages);
-
+    
     $product->name = $request->input('name');
     $product->description = $request->input('description');
     $product->category_id = $request->input('category');
