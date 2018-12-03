@@ -28,6 +28,9 @@
       </div>
     </div>
 
+    <!-- Errors -->
+    @include('admin.includes.errors')
+
     <div class="row">
       <div id="message" class="col-md-12 alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

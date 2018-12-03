@@ -32,7 +32,7 @@
           <div class="widget-user-header bg-aqua-active text-center">
             <!-- /.widget-user-image -->
             <h3 class="profile-username text-center"><i class="fa fa-user"></i>{{ $user->name }} {{ $user->last_name }}</h3>
-            <h5 class="widget-user-desc">{{ $user->type }}</h5>
+            <h5 class="widget-user-desc">{{ $user->role->name }}</h5>
           </div>
           <div class="box-footer no-padding">
             <ul class="nav nav-stacked">
@@ -51,7 +51,7 @@
 
               <li>
                 <a href="#"><i class="fa fa-users"></i></i>Tipo de Usuario</b>
-                  <span class="pull-right {{-- badge bg-blue --}}">{{ $user->type }}</span>
+                  <span class="pull-right {{-- badge bg-blue --}}">{{ $user->role->name }}</span>
                 </a>
               </li>
 

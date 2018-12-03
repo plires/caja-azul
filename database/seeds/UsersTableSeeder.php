@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
         'last_name'   => 'Lires',
         'phone'       => '1150497501',
         'email'       => 'pablo@librecomunicacion.net',
-        'type'       => 'Administrador',
+        'role_id'       => 2,
         'password'    => bcrypt('123123'),
       ]);
 

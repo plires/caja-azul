@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Address;
 use App\Subscription;
+use App\Role;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,12 @@ class User extends Authenticatable
     //User->subscriptions
     public function subscriptions(){
         return $this->hasMany(Subscription::class);
+    }
+
+    // User->role
+    function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
     protected $dates = ['deleted_at'];

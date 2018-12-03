@@ -34,19 +34,8 @@
       @endif
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        @if ($errors->any())
-          <div class="alert alert-danger small" role="alert">
-            @foreach ($errors->all() as $error)
-              <ul>
-                <li>{{ $error }}</li>
-              </ul>
-            @endforeach
-          </div>
-        @endif
-      </div>
-    </div>
+    <!-- Errors -->
+    @include('admin.includes.errors')
 
     <div class="row">
       <div class="col-md-12">

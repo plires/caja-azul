@@ -90,10 +90,11 @@
 
             <div class="form-group row">
               <div class="col-md-12">
-                <label for="type">Tipo de Usuario</label>
-                <select id="type" name="type" class="form-control">
-                  <option value="Usuario" selected>Usuario</option>
-                  <option value="Administrador">Administrador</option>
+                <label for="role">Tipo de Usuario</label>
+                <select id="role" name="role" class="form-control">
+                  @foreach($roles as $role)
+                    <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                  @endforeach
                 </select>
               </div>
             </div>

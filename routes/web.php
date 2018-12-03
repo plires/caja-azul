@@ -1,17 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'roles']], function () {
 
 	// Rutas para Admin.Users
 	Route::get('/users', 'UserController@index'); // listado de usuarios
@@ -45,7 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('/discount_codes', 'DiscountCodesController@store'); // Registra el nuevo cupon de descuento
 	Route::get('/discount_codes/{id}/edit', 'DiscountCodesController@edit'); // Muestra el formulario de edicion de los cupones de descuento
 	Route::post('/discount_codes/{id}/edit', 'DiscountCodesController@update'); // Actualiza el cupon
-	Route::delete('/discount_codes/{id}', 'discount_codes@delete'); // elimina la categoria
+	// Route::delete('/discount_codes/{id}', 'discount_codes@delete'); // elimina el cupon
 
 	// Rutas para las imagenes del producto
 	// Route::get('/products/{id}/images', 'ImageController@index'); // listado de las imagenes del productos

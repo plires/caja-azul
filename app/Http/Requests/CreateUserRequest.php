@@ -29,7 +29,7 @@ class CreateUserRequest extends FormRequest
             'phone' => 'required|min:0',
             'email' => 'required|email|max:100|unique:users',
             'password' => 'required|max:16|min:6|confirmed',
-            'type' => 'required|in:Usuario,Administrador',
+            'role' => 'required|in:1,2',
         ];
     }
 
@@ -55,8 +55,8 @@ class CreateUserRequest extends FormRequest
             'password.confirmed' => 'Los password no coinciden.',
             'password.max' => 'El campo password no puede exceder los 16 caracteres.',
             'password.min' => 'El campo password debe tener al menos 6 caracteres.',
-            'type.required' => 'Ingrese el tipo de usuario.',
-            'type.in' => 'Ingrese un tipo de usuario válido.'
+            'role.required' => 'Ingrese el tipo de usuario.',
+            'role.in' => 'Ingrese un tipo de usuario válido.'
         ];
     }
 

@@ -90,20 +90,15 @@
 
             <div class="form-group row">
               <div class="col-md-12">
-                <label for="type">Tipo de Usuario</label>
-                <select id="type" name="type" class="form-control">
-                  <option value="Administrador" 
-                    @if ($user->type == old('type', 'Administrador'))
+                <label for="role">Tipo de Usuario</label>
+                <select id="role" name="role" class="form-control">
+                  @foreach($roles as $role)
+                    <option value="{{ $role->id }}"
+                      @if($user->role_id == $role->id )
                       selected
-                    @endif>
-                    Administrador
-                  </option>
-                  <option value="Usuario" 
-                    @if ($user->type == old('type', 'Usuario'))
-                      selected
-                    @endif>
-                    Usuario
-                  </option>
+                      @endif
+                      >{{ $role->name }}</option>
+                  @endforeach
                 </select>
               </div>
             </div>

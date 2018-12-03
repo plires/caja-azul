@@ -25,16 +25,16 @@ class EditUserRequest extends FormRequest
      */
     public function rules()
     {
-        $v = Validator::make($data, [
-            'password' => 'sometimes|min:6|max:16|confirmed|same:password_confirmation'
-        ]);
+        // $v = Validator::make($data, [
+        //     'password' => 'sometimes|min:6|max:16|confirmed|same:password_confirmation'
+        // ]);
 
         return [
             'name' => 'required|max:100',
             'last_name' => 'required|max:100',
             'phone' => 'required|min:0',
-            'email' => 'required|email|max:100|unique:users,id,'.$this->user()->id,
-            'type' => 'required|in:Usuario,Administrador',
+            'email' => 'required|email|max:100|unique:users,email,'.$this->route()->id,
+            'role' => 'required|in:1,2',
         ];
     }
 
@@ -61,8 +61,8 @@ class EditUserRequest extends FormRequest
             'password.same' => 'Los password no coinciden.',
             'password.max' => 'El campo password no puede exceder los 16 caracteres.',
             'password.min' => 'El campo password debe tener al menos 6 caracteres.',
-            'type.required' => 'Ingrese el tipo de usuario.',
-            'type.in' => 'Ingrese un tipo de usuario válido.'
+            'role.required' => 'Ingrese el tipo de usuario.',
+            'role.in' => 'Ingrese un tipo de usuario válido.'
         ];
     }
 }
