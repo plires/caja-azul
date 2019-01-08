@@ -100,18 +100,13 @@ class UserController extends Controller
   {
     $user = User::find($id);
     $userAuthId = Auth::id();
+  	
+    if ($userAuthId == $id) {
+  		return view('admin.users.index');
+    }
 
     if ($request->ajax()) {
 
-    	if ($userAuthId == $id) {
-    		$data = [
-				    'error'  => 'Raphael',
-				    'red'   => 22
-				];
-    		// session()->flash('red', 'red!');
-
-		    return $data;
-    }
     
     	User::find($id)->delete();
     	$message = 'El Usuario<strong> '. $user->name .' </strong>fue borrado.';

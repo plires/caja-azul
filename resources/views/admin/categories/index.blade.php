@@ -178,7 +178,6 @@
           $("#modal-danger").modal('hide');
         })
         .fail(function(response) {
-          console.log(response);
           row.fadeIn();
           $("#CategoryWithProducts").fadeIn();
           $("#CategoryWithProducts").html('La categoria tiene productos asosciados. Elimine dichos productos previamente.');

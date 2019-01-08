@@ -29,6 +29,14 @@
     </div>
 
     <div class="row">
+      <div id="userLogin" class="col-md-12 alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <i class="icon fa fa-check"></i>
+        asd
+      </div>
+    </div>
+
+    <div class="row">
       <div id="message" class="col-md-12 alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
           <i class="icon fa fa-check"></i>
@@ -157,6 +165,7 @@
   $(document).ready(function(){
 
     $("#message").hide();
+    $("#userLogin").hide();
 
     $(".btn-confirm").on("click", function(){
       $("#modal-danger").modal('show');
@@ -179,6 +188,15 @@
           setTimeout(function() {
           $("#message").fadeOut(800);
           },1300);
+          $("#modal-danger").modal('hide');
+        })
+        .fail(function(response) {
+          row.fadeIn();
+          $("#userLogin").fadeIn();
+          $("#userLogin").html('No puede eliminar un usuario logueado.');
+          setTimeout(function() {
+          $("#userLogin").fadeOut(1300);
+          },1800);
           $("#modal-danger").modal('hide');
         });
       });
