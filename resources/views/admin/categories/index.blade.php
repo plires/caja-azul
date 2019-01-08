@@ -32,6 +32,14 @@
     @include('admin.includes.errors')
 
     <div class="row">
+      <div id="CategoryWithProducts" class="col-md-12 alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <i class="icon fa fa-check"></i>
+        asd
+      </div>
+    </div>
+
+    <div class="row">
       <div id="message" class="col-md-12 alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
           <i class="icon fa fa-check"></i>
@@ -144,6 +152,7 @@
   $(document).ready(function(){
 
     $("#message").hide();
+    $("#CategoryWithProducts").hide();
 
     $(".btn-confirm").on("click", function(){
       $("#modal-danger").modal('show');
@@ -166,6 +175,16 @@
           setTimeout(function() {
           $("#message").fadeOut(800);
           },1300);
+          $("#modal-danger").modal('hide');
+        })
+        .fail(function(response) {
+          console.log(response);
+          row.fadeIn();
+          $("#CategoryWithProducts").fadeIn();
+          $("#CategoryWithProducts").html('La categoria tiene productos asosciados. Elimine dichos productos previamente.');
+          setTimeout(function() {
+          $("#CategoryWithProducts").fadeOut(1300);
+          },1800);
           $("#modal-danger").modal('hide');
         });
       });

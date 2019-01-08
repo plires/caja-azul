@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('/discount_codes', 'DiscountCodesController@store'); // Registra el nuevo cupon de descuento
 	Route::get('/discount_codes/{id}/edit', 'DiscountCodesController@edit'); // Muestra el formulario de edicion de los cupones de descuento
 	Route::post('/discount_codes/{id}/edit', 'DiscountCodesController@update'); // Actualiza el cupon
-	// Route::delete('/discount_codes/{id}', 'discount_codes@delete'); // elimina el cupon
+	Route::delete('/discount_codes/{id}', 'DiscountCodesController@delete'); // elimina el cupon
 
 	// Rutas para las imagenes del producto
 	// Route::get('/products/{id}/images', 'ImageController@index'); // listado de las imagenes del productos

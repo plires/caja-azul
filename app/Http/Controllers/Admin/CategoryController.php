@@ -98,14 +98,13 @@ class CategoryController extends Controller
 
 	    $productsInCategory = $category->products->count();
 
+    	if ($productsInCategory > 0 ) {
+    		return view('admin.categories.index');
+    	}
+
 	    if ($request->ajax()) {
 
-	    	if ($productsInCategory > 0 ) {
-	    		$message = 'La categoria tiene productos asosciados. Elimine dichos productos previamente.';
-	    		return $message;
-	    	}
-
-	    	Category::find($id)->delete();
+	     	Category::find($id)->delete();
 	    	$message = 'La Categoria <strong> '. $category->name .' </strong>fue borrada.';
 	    	return $message;
 	    }

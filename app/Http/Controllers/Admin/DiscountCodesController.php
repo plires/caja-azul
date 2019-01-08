@@ -90,8 +90,8 @@ class DiscountCodesController extends Controller
     $discountCode = DiscountCode::find($id);
 
     if ($request->ajax()) {
-      Product::find($id)->delete();
-      $message = 'El Producto <strong> '. $product->name .' </strong>fue borrado.';
+      DiscountCode::find($id)->delete();
+      $message = 'El Cupón <strong> '. $discountCode->name .' </strong>fue borrado.';
       return $message;
     }
     

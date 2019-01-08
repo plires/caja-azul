@@ -106,8 +106,8 @@
                       </li>
                       <li class="divider"></li>
                       <li>
-                        <button rel="tooltip" class="btn_delete_user btn-confirm transition" title="Eliminar Cupon">
-                          <i class="fa fa-user-times"></i>Eliminar Cupon
+                        <button rel="tooltip" class="btn_delete btn-confirm transition" title="Eliminar Cupón">
+                          <i class="fa fa-user-times"></i>Eliminar Cupón
                         </button>
                       </li>
                     </ul>
@@ -166,7 +166,7 @@
       $("#modal-danger").modal('show');
     });
 
-    $('.btn_delete_user').click(function(){
+    $('.btn_delete').click(function(){
 
       var row = $(this).parents('tr');
       var id = row.data('id');

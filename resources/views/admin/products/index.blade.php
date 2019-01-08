@@ -51,12 +51,12 @@
 
           <thead>
             <tr class="active">
-                <th class="col-lg-1 col-md-1">#</th>
-                <th class="col-lg-1 col-md-1">Nombre</th>
-                <th class="col-lg-5 col-md-5">Descripción</th>
-                <th class="col-lg-1 col-md-1">Categoría</th>
-                <th class="col-lg-1 col-md-1">Imagen</th>
-                <th class="col-lg-3 col-md-3 text-center">Opciones</th>
+              <th class="col-lg-1 col-md-1">#</th>
+              <th class="col-lg-1 col-md-1">Nombre</th>
+              <th class="col-lg-5 col-md-5">Descripción</th>
+              <th class="col-lg-1 col-md-1">Categoría</th>
+              <th class="col-lg-1 col-md-1">Imagen</th>
+              <th class="col-lg-3 col-md-3 text-center">Opciones</th>
             </tr>
           </thead>
 
