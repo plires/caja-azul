@@ -10,7 +10,7 @@ $factory->define(Subscription::class, function (Faker $faker) {
 
     return [
     	'order_date'				=> Carbon::now(),
-			'arrival_date'			=> $date->addMonth(),
+			'delivery_day'			=> $faker->randomElement($array = array ('Martes','Jueves')),
 			'frecuency'         => $faker->randomElement($array = array ('Semanal','Quincenal','Mensual')),
 			'status_id'					=> $faker->numberBetween(1, 3),
 			'total'							=> $faker->numberBetween(2500, 4250),

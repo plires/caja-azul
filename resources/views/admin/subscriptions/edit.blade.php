@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Crear Nueva Categoria')
+@section('title', 'Editar categoria')
 
 <!-- Header Admin -->
 @section('header')
@@ -17,15 +17,12 @@
 <!-- Content Admin -->
 @section('content')
   <div class="container">
-
+    
     <div class="row">
     	<div class="col-md-12 text-center">
-        <h1>Nueva Categoria</h1>
+        <h1>Editar Categoria {{ $category->name }}</h1>
       </div>
     </div>
-
-    <!-- Errors -->
-    @include('admin.includes.errors')
 
     <div class="row">
       @if (session('message'))
@@ -39,22 +36,36 @@
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
+        @if ($errors->any())
+          <div class="alert alert-danger small" role="alert">
+            @foreach ($errors->all() as $error)
+              <ul>
+                <li>{{ $error }}</li>
+              </ul>
+            @endforeach
+          </div>
+        @endif
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
         <div class="box box-primary box-body">
         
-          <form method="post" action="{{ url('/admin/categories/') }}" enctype="multipart/form-data">
+          <form method="post" action="{{ url('/admin/categories/' . $category->id .'/edit') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row">
               <div class="col-md-12">
                 <label for="name">Nombre</label>
-                <input  type="text" class="form-control" name="name" id="name" placeholder="Nombre de la categoria" value="{{ old('name') }}">
+                <input  type="text" class="form-control" name="name" id="name" placeholder="Nombre de la categoria" value="{{ old('name', $category->name) }}">
               </div>
             </div>
 
             <div class="form-group row">
               <div class="col-md-12">
                 <label for="description">Descripción</label>
-                <textarea id="description" name="description" class="form-control" rows="5" placeholder="Descripción de la categoria...">{{ old('description') }}</textarea>
+                <textarea id="description" name="description" class="form-control" rows="5" placeholder="Descripción de la categoria...">{{ old('description', $category->description) }}</textarea>
               </div>
             </div>
 
@@ -63,7 +74,7 @@
                 <i class="fa fa-backward"></i>Volver
               </a>
               <button type="submit" class="transition btn btn-info">
-                <i class="fa fa-save"></i>Registrar Categoria
+                <i class="fa fa-save"></i>Guardar Cambios
               </button>
             </div>
             

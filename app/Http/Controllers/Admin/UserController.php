@@ -22,7 +22,6 @@ class UserController extends Controller
 		$this->middleware('roles');
 	}
 
-
   public function Index()
   {
 
@@ -106,12 +105,18 @@ class UserController extends Controller
     }
 
     if ($request->ajax()) {
-
     
     	User::find($id)->delete();
     	$message = 'El Usuario<strong> '. $user->name .' </strong>fue borrado.';
     	return $message;
     }
+  }
+
+  public function dataConvertJson()
+  {
+    $users = User::pluck('name');
+
+    return $users;
   }
 
 }

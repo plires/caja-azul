@@ -3,6 +3,7 @@
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'roles']], function () {
 
 	// Rutas para Admin.Users
+	Route::get('/users/json', 'UserController@dataConvertJson'); // Devuelve un Json de usuarios
 	Route::get('/users', 'UserController@index'); // listado de usuarios
 	Route::get('/users/create', 'UserController@create'); // Muestra el formulario de registro
 	Route::post('/users', 'UserController@store'); // Registra el nuevo usuario
@@ -35,6 +36,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('/discount_codes/{id}/edit', 'DiscountCodesController@edit'); // Muestra el formulario de edicion de los cupones de descuento
 	Route::post('/discount_codes/{id}/edit', 'DiscountCodesController@update'); // Actualiza el cupon
 	Route::delete('/discount_codes/{id}', 'DiscountCodesController@delete'); // elimina el cupon
+
+	// Rutas para Admin.Subscriptions
+	Route::get('/subscriptions', 'SubscriptionsController@index'); // listado de suscripciones
+	Route::get('/subscriptions/create', 'SubscriptionsController@create'); // Muestra el formulario de registro de suscripciones
+	Route::post('/subscriptions', 'SubscriptionsController@store'); // Registra una nueva suscripcion
+	Route::get('/subscriptions/{id}/edit', 'SubscriptionsController@edit'); // Muestra el formulario de edicion de la suscripcion
+	Route::post('/subscriptions/{id}/edit', 'SubscriptionsController@update'); // Actualiza la suscripcion
+	Route::delete('/subscriptions/{id}', 'SubscriptionsController@delete'); // elimina la suscripcion
 
 	// Rutas para las imagenes del producto
 	// Route::get('/products/{id}/images', 'ImageController@index'); // listado de las imagenes del productos

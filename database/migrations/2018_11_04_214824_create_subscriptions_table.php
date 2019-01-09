@@ -17,7 +17,7 @@ class CreateSubscriptionsTable extends Migration
             $table->increments('id');
 
             $table->date('order_date');
-            $table->date('arrival_date');
+            $table->string('delivery_day');
             $table->string('frecuency');
             $table->integer('total');
 

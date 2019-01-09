@@ -15,7 +15,7 @@ class SubscriptionsTableSeeder extends Seeder
     {
         Subscription::create([
             'order_date'        => Carbon::now(),
-            'arrival_date'      => '2018-12-21',
+            'delivery_day'      => 'Jueves',
             'frecuency'         => 'Mensual',
             'status_id'         => \Faker\Factory::create()->numberBetween(1, 3),
             'total'             => \Faker\Factory::create()->numberBetween(2500, 4250),
@@ -25,7 +25,7 @@ class SubscriptionsTableSeeder extends Seeder
 
           Subscription::create([
             'order_date'        => Carbon::now(),
-            'arrival_date'      => '2018-12-21',
+            'delivery_day'      => 'Martes',
             'frecuency'         => 'Quincenal',
             'status_id'         => \Faker\Factory::create()->numberBetween(1, 3),
             'total'             => \Faker\Factory::create()->numberBetween(2500, 4250),
