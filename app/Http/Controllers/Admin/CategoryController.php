@@ -64,7 +64,7 @@ class CategoryController extends Controller
 
 	  public function update(request $request, $id) 
 	  {
-	  	$category = Category::find('id', $id)->get();
+	  	$category = Category::find($id);
 
 	    $messages = [
 	      'name.required' => 'Ingresá el nombre de la categoria.',

@@ -45,6 +45,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('/subscriptions/{id}/edit', 'SubscriptionsController@update'); // Actualiza la suscripcion
 	Route::delete('/subscriptions/{id}', 'SubscriptionsController@delete'); // elimina la suscripcion
 
+	// Rutas para las direcciones del usuario
+	Route::post('/users/{user_id}/address/create', 'AddressController@store'); // Registra la nueva direccion del usuario
+	Route::get('/users/{user_id}/address/create', 'AddressController@create'); // Muestra el formulario de creación de la nueva direccion del usuario
+	Route::get('/users/{id}/address/edit', 'AddressController@edit'); // muestra el formulario de edicion de la direccion de usuario
+	Route::patch('/users/{id}/address/edit', 'AddressController@update'); // Actualiza la direccion del usuario
+	Route::delete('/users/{id}/address/delete', 'AddressController@delete'); // Borra la direccion del usuario
+
 	// Rutas para las imagenes del producto
 	// Route::get('/products/{id}/images', 'ImageController@index'); // listado de las imagenes del productos
 	Route::post('/products/{id}/images', 'ImageController@store'); // Registra la nueva imagenes del producto

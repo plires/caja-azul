@@ -54,7 +54,7 @@ class UserController extends Controller
     $user->phone = $request->input('phone');
     $user->email = $request->input('email');
     $user->role_id = $request->input('role');
-    $user->password = $request->input('password');
+    $user->password = bcrypt($request->input('password'));
 
     $user->save(); // Ejecuta un insert y agrega el usuario.
 
